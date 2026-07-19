@@ -29,6 +29,8 @@ what's next
   - [ ] remove next/prev arrows when there is no choice (len(draws) == 1).
   - [ ] arrows above currently selected draw (from from_tile to to_tile).
   - [ ] visualize player's on-board routes with a graph.
+  - [ ] add in shortcuts for button presses.
+  - [ ] add in controller support.
 
 ## credits
 
