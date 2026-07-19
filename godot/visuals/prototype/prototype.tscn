@@ -219,36 +219,45 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("10_rb7bs")
 
+[node name="prev_button" type="TextureButton" parent="ui_layer" unique_id=1514322331]
+unique_name_in_owner = true
+visible = false
+offset_left = 486.0
+offset_top = 620.0
+offset_right = 586.0
+offset_bottom = 720.0
+texture_normal = SubResource("CompressedTexture2D_pq3sf")
+
+[node name="confirm_button" type="TextureButton" parent="ui_layer" unique_id=278317080]
+unique_name_in_owner = true
+visible = false
+offset_left = 590.0
+offset_top = 620.0
+offset_right = 690.0
+offset_bottom = 720.0
+texture_normal = ExtResource("15_q6xao")
+
+[node name="next_button" type="TextureButton" parent="ui_layer" unique_id=1072787510]
+unique_name_in_owner = true
+visible = false
+offset_left = 694.0
+offset_top = 620.0
+offset_right = 794.0
+offset_bottom = 720.0
+texture_normal = SubResource("CompressedTexture2D_a5jhi")
+
 [node name="bot_center_hbox" type="HBoxContainer" parent="ui_layer" unique_id=1687906004]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -50.0
+offset_left = -240.0
 offset_top = -100.0
-offset_right = 50.0
+offset_right = 240.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
-
-[node name="prev_button" type="TextureButton" parent="ui_layer/bot_center_hbox" unique_id=1514322331]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-texture_normal = SubResource("CompressedTexture2D_pq3sf")
-
-[node name="confirm_button" type="TextureButton" parent="ui_layer/bot_center_hbox" unique_id=278317080]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-texture_normal = ExtResource("15_q6xao")
-
-[node name="next_button" type="TextureButton" parent="ui_layer/bot_center_hbox" unique_id=1072787510]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-texture_normal = SubResource("CompressedTexture2D_a5jhi")
 
 [node name="credits_layer" type="CanvasLayer" parent="." unique_id=1678586559]
 unique_name_in_owner = true
@@ -384,6 +393,6 @@ vertical_alignment = 1
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer2/right_button" to="." method="_on_right_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/pass_button" to="." method="_on_pass_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/step_button" to="." method="_on_step_button_pressed"]
-[connection signal="pressed" from="ui_layer/bot_center_hbox/prev_button" to="." method="_on_prev_button_pressed"]
-[connection signal="pressed" from="ui_layer/bot_center_hbox/confirm_button" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="ui_layer/bot_center_hbox/next_button" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="ui_layer/prev_button" to="." method="_on_prev_button_pressed"]
+[connection signal="pressed" from="ui_layer/confirm_button" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="ui_layer/next_button" to="." method="_on_next_button_pressed"]

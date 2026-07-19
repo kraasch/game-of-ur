@@ -21,6 +21,7 @@ signal unfreeze_dice()
 signal freeze_pass_turn()
 signal unfreeze_pass_turn()
 signal reset_dice()
+signal was_dice_roll(rolls : Array[bool])
 
 #############
 # enums     #
@@ -122,17 +123,18 @@ func on_turn_passed() -> void:
 	_set_game_state(GameState.RESOLVING_TURN)
 	_deal_with_turn_passed()
 
-func on_player_dice_roll() -> Array[bool]:
+func on_player_dice_roll() -> void:
 	if not state == GameState.WAITING_FOR_DICE_ROLL:
-		return []
+		return
 	_set_game_state(GameState.RESOLVING_TURN)
 	var rolls : Array[bool] = get_random_numbers()
+	if len(rolls) > 0:
+		was_dice_roll.emit(rolls)
 	var pips : int = 0
 	for roll : bool in rolls:
 		if roll:
 			pips += 1
 	_deal_with_dice_roll(pips)
-	return rolls
 
 func on_start_a_new_game() -> void:
 	if not state == GameState.GAME_OVER:
@@ -292,17 +294,23 @@ func _set_focus() -> void:
 		(to.glow as Glow).set_focus()
 
 func _remove_focus() -> void:
+	# TODO: buggy, if playing one turn on one board then switching and playing another.
+	# Invalid access to property or key 'Tile(node_id:a2, style:3)' on a base 
+	# object of type 'Dictionary'.
+	# NOTE: also buggy after won games.
 	if not current_focus:
 		return
 	var draw : Draw = current_focus
 	var to_loc : Location = draw.to
 	var from_loc : Location = draw.from
-	var to : Variant = fast_lookup[to_loc]
-	var from : Variant = fast_lookup[from_loc]
-	if from is Final or from is Field:
-		(from.glow as Glow).reset_focus()
-	if to is Final or to is Field:
-		(to.glow as Glow).reset_focus()
+	if fast_lookup.has(to_loc):
+		var to : Variant = fast_lookup[to_loc] # TODO: bug here.
+		if to is Final or to is Field:
+			(to.glow as Glow).reset_focus()
+	if fast_lookup.has(from_loc):
+		var from : Variant = fast_lookup[from_loc] # TODO: bug here.
+		if from is Final or from is Field:
+			(from.glow as Glow).reset_focus()
 
 func _shift_focus(focus_shift : FOCUS_SHIFT) -> void: # TODO: refine.
 	if current_draws.size() <= 1:

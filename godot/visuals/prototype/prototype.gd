@@ -84,6 +84,7 @@ func _setup_game() -> void:
 	game = Game.new()
 	game_over_layer.was_closed.connect(game.on_start_a_new_game)
 	# TODO: pull this into the game's connect_game() method.
+	game.was_dice_roll.connect(_roll_the_dice)
 	game.change_navigation_visibility.connect(ui_layer.update_navigation_ui)
 	game.change_left_right_visibility.connect(ui_layer.update_next_and_prev_ui)
 	game.change_right_visibility.connect(ui_layer.update_next_ui)
@@ -158,9 +159,7 @@ func _on_pass_button_pressed() -> void:
 
 func _on_step_button_pressed() -> void:
 	if game:
-		var eyes : Array[bool] = game.on_player_dice_roll()
-		if len(eyes) > 0:
-			_roll_the_dice(eyes)
+		game.on_player_dice_roll()
 
 func _on_settings_button_pressed() -> void:
 	if music_player:
