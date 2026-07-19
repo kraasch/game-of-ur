@@ -252,7 +252,6 @@ texture_normal = SubResource("CompressedTexture2D_a5jhi")
 
 [node name="credits_layer" type="CanvasLayer" parent="." unique_id=1678586559]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("14_m7ynk")
 
 [node name="ColorRect" type="ColorRect" parent="credits_layer" unique_id=31481305]
@@ -311,6 +310,23 @@ layout_mode = 2
 theme = ExtResource("14_ifle2")
 theme_override_font_sizes/normal_font_size = 20
 text = "(interact to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="corner_code_repo_weblink" type="RichTextLabel" parent="credits_layer" unique_id=35261977]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -187.0
+offset_top = -208.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("14_ifle2")
+bbcode_enabled = true
+text = "[font_size=32][url=https://github.com/kraasch/game-of-ur]see code[br]on Github[/url][/font_size]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
