@@ -87,35 +87,43 @@ unique_name_in_owner = true
 script = ExtResource("4_sutew")
 
 [node name="top_left_hbox" type="HBoxContainer" parent="ui_layer" unique_id=304745210]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1.0
+offset_right = 705.0
+offset_bottom = 412.0
 
-[node name="reset_perspective_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1386967657]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_layer/top_left_hbox" unique_id=607299462]
 layout_mode = 2
-texture_normal = ExtResource("6_7dt1p")
 
-[node name="shader_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=404992350]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("5_j8a76")
-
-[node name="about_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1852576180]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("9_pc71m")
-
-[node name="settings_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=668865967]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("9_m7ynk")
-
-[node name="left_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1765995351]
+[node name="left_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=1765995351]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("8_g1s22")
 
-[node name="level_label" type="Label" parent="ui_layer/top_left_hbox" unique_id=372516432]
+[node name="about_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=1852576180]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_pc71m")
+
+[node name="settings_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=668865967]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_m7ynk")
+
+[node name="reset_perspective_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=1386967657]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("6_7dt1p")
+
+[node name="shader_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=404992350]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_j8a76")
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="ui_layer/top_left_hbox" unique_id=1680849865]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="level_label" type="Label" parent="ui_layer/top_left_hbox/VBoxContainer2" unique_id=372516432]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -124,7 +132,7 @@ text = "#?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="right_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1527704386]
+[node name="right_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer2" unique_id=1527704386]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("9_rb7bs")
@@ -137,20 +145,25 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="pass_button" type="TextureButton" parent="ui_layer/top_right_hbox" unique_id=1582805708]
+[node name="HBoxContainer" type="HBoxContainer" parent="ui_layer/top_right_hbox" unique_id=733049180]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+
+[node name="pass_button" type="TextureButton" parent="ui_layer/top_right_hbox/HBoxContainer" unique_id=1582805708]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("11_kcsdr")
 stretch_mode = 3
 
-[node name="step_button" type="TextureButton" parent="ui_layer/top_right_hbox" unique_id=649124983]
+[node name="step_button" type="TextureButton" parent="ui_layer/top_right_hbox/HBoxContainer" unique_id=649124983]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("7_g1s22")
 stretch_mode = 3
 
-[node name="number_label" type="Label" parent="ui_layer/top_right_hbox" unique_id=1562662209]
+[node name="number_label" type="Label" parent="ui_layer/top_right_hbox/HBoxContainer" unique_id=1562662209]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(80, 0)
@@ -160,28 +173,31 @@ text = "?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="eye_1" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=2004469224]
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_layer/top_right_hbox" unique_id=889752813]
+layout_mode = 2
+
+[node name="eye_1" type="TextureRect" parent="ui_layer/top_right_hbox/VBoxContainer" unique_id=2004469224]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("13_pq3sf")
 stretch_mode = 5
 
-[node name="eye_2" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=533135865]
+[node name="eye_2" type="TextureRect" parent="ui_layer/top_right_hbox/VBoxContainer" unique_id=533135865]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("13_pq3sf")
 stretch_mode = 5
 
-[node name="eye_3" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=1007446588]
+[node name="eye_3" type="TextureRect" parent="ui_layer/top_right_hbox/VBoxContainer" unique_id=1007446588]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("13_pq3sf")
 stretch_mode = 5
 
-[node name="eye_4" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=1984488798]
+[node name="eye_4" type="TextureRect" parent="ui_layer/top_right_hbox/VBoxContainer" unique_id=1984488798]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -343,14 +359,14 @@ text = "(interact to continue)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="ui_layer/top_left_hbox/reset_perspective_button" to="cam" method="_on_reset_perspective_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_left_hbox/shader_button" to="shader_layer/shader_rect" method="_on_shader_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_left_hbox/about_button" to="ui_layer" method="_on_about_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_left_hbox/settings_button" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_left_hbox/left_button" to="." method="_on_left_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_left_hbox/right_button" to="." method="_on_right_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_right_hbox/pass_button" to="." method="_on_pass_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_right_hbox/step_button" to="." method="_on_step_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/left_button" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/about_button" to="ui_layer" method="_on_about_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/reset_perspective_button" to="cam" method="_on_reset_perspective_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/shader_button" to="shader_layer/shader_rect" method="_on_shader_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer2/right_button" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/pass_button" to="." method="_on_pass_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/step_button" to="." method="_on_step_button_pressed"]
 [connection signal="pressed" from="ui_layer/bot_center_hbox/prev_button" to="." method="_on_prev_button_pressed"]
 [connection signal="pressed" from="ui_layer/bot_center_hbox/confirm_button" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="ui_layer/bot_center_hbox/next_button" to="." method="_on_next_button_pressed"]
