@@ -48,3 +48,40 @@ tools:
     - location: https://www.audiokinetic.com/en/wwise/overview
     - info: https://www.audiokinetic.com/en/credits
 
+fonts:
+
+  - Darkbyte Font
+    - license:  [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+    - location: https://www.dafont.com/de/darkbyte.font
+    - note:     pixelized, fat.
+  - Moonlit Flow Font
+    - license:  [SIL 1.1](https://openfontlicense.org/)
+    - location: https://www.dafont.com/de/moonlit-flow.font
+    - location: https://ggbot.itch.io/moonlit-flow-font
+    - note:     international, cartoony.
+  - Scabber Font
+    - license:  [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+    - location: https://www.dafont.com/de/scabber.font
+    - note:     cartoony, brush.
+  - Dogica Font
+    - license:  [SIL 1.1](https://spdx.org/licenses/OFL-1.1.html)
+    - location: https://www.dafont.com/de/dogica.font
+  - Belanidi Serif Font
+    - license:  [SIL 1.1](https://spdx.org/licenses/OFL-1.1.html)
+    - location: https://www.dafont.com/de/belanidi-serif.font
+    - location: https://hanshuyuri.itch.io/
+    - note:     CJK characters, pixelized, in progress.
+  - Drybrush Font
+    - license:  [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+    - location: https://www.dafont.com/de/drybrush.font
+    - note:     cartoony, brush.
+  - Zarathustra
+    - license:  [free & non-commercial]()
+    - location: https://www.dafont.com/zarathustra.font
+    - note:     by fereydoun23@gmail.com and mr. keyvan mahmmoudi, from the university of teheran
+    - note:     unicode, glyphs.
+  - Khosrau
+    - license:  [free & non-commercial]()
+    - location: https://www.dafont.com/khosrau.font
+    - by:       fereydoun23@gmail.com and mr. keyvan mahmmoudi, from the university of teheran
+    - note:     unicode, glyphs.
