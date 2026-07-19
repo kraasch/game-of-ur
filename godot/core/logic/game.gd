@@ -113,11 +113,17 @@ func on_turn_passed() -> void:
 	_set_game_state(GameState.RESOLVING_TURN)
 	_deal_with_turn_passed()
 
-func on_player_dice_roll(pips : int) -> void:
+func on_player_dice_roll() -> Array[bool]:
 	if not state == GameState.WAITING_FOR_DICE_ROLL:
-		return
+		return []
 	_set_game_state(GameState.RESOLVING_TURN)
+	var rolls : Array[bool] = get_random_numbers()
+	var pips : int = 0
+	for roll : bool in rolls:
+		if roll:
+			pips += 1
 	_deal_with_dice_roll(pips)
+	return rolls
 
 func on_start_a_new_game() -> void:
 	if not state == GameState.GAME_OVER:

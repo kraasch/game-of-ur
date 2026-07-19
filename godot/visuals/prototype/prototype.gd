@@ -153,8 +153,9 @@ func _on_pass_button_pressed() -> void:
 
 func _on_step_button_pressed() -> void:
 	if game:
-		var pips : int = _roll_the_dice()
-		game.on_player_dice_roll(pips)
+		var eyes : Array[bool] = game.on_player_dice_roll()
+		if len(eyes) > 0:
+			_roll_the_dice(eyes)
 
 func _on_settings_button_pressed() -> void:
 	if music_player:
@@ -189,8 +190,7 @@ func _update_level_label(level_num : int) -> void:
 	var level_str : String = str(level_num + 1)
 	level_label.text = '#' + level_str
 
-func _roll_the_dice() -> int:
-	var eyes : Array[bool] = game.get_random_numbers()
+func _roll_the_dice(eyes : Array[bool]) -> int:
 	var num : int = 0
 	for i : int in range(len(eyes)):
 		var eye : bool = eyes[i]
