@@ -158,11 +158,15 @@ func connect_game(
 	_reset_level()
 
 func cycle_level_prev() -> void:
+	change_navigation_visibility.emit(false)
+	freeze_pass_turn.emit()
 	var number_of_levels : int = len(Level.LEVEL.values())
 	level_index = (level_index - 1 + number_of_levels) % number_of_levels
 	_reset_level()
 
 func cycle_level_next() -> void:
+	change_navigation_visibility.emit(false)
+	freeze_pass_turn.emit()
 	var number_of_levels : int = len(Level.LEVEL.values())
 	level_index = (level_index + 1 + number_of_levels) % number_of_levels
 	_reset_level()
@@ -286,7 +290,7 @@ func _shift_focus(focus_shift : FOCUS_SHIFT) -> void: # TODO: refine.
 	var new_draw : Draw = current_draws[next_index]
 	_remove_focus()
 	current_focus = new_draw
-	_set_focus
+	_set_focus()
 
 func _execute_draw(draw : Draw) -> void:
 	var info : Dictionary = level.execute_draw(draw, Player.PLAYERS[current_pid])
