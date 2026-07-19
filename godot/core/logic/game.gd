@@ -104,21 +104,25 @@ var current_draws : Array[Draw] = []
 func on_player_choose_draw() -> void:
 	if not state == GameState.WAITING_FOR_TILE_CHOICE:
 		return
+	_set_game_state(GameState.RESOLVING_TURN)
 	_deal_with_player_choice(current_focus)
 
-func _on_turn_passed() -> void:
+func on_turn_passed() -> void:
 	if not state == GameState.WAITING_FOR_PASS:
 		return
+	_set_game_state(GameState.RESOLVING_TURN)
 	_deal_with_turn_passed()
 
-func _on_player_dice_roll(pips : int) -> void:
+func on_player_dice_roll(pips : int) -> void:
 	if not state == GameState.WAITING_FOR_DICE_ROLL:
 		return
+	_set_game_state(GameState.RESOLVING_TURN)
 	_deal_with_dice_roll(pips)
 
-func _on_start_a_new_game() -> void:
+func on_start_a_new_game() -> void:
 	if not state == GameState.GAME_OVER:
 		return
+	_set_game_state(GameState.RESOLVING_TURN)
 	_reset_level()
 
 func on_input_prev() -> void:

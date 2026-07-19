@@ -82,7 +82,7 @@ func _setup_debug() -> void:
 
 func _setup_game() -> void:
 	game = Game.new()
-	game_over_layer.was_closed.connect(game._on_start_a_new_game)
+	game_over_layer.was_closed.connect(game.on_start_a_new_game)
 	# TODO: pull this into the game's connect_game() method.
 	game.change_navigation_visibility.connect(ui_layer.update_navigation_ui)
 	game.change_left_right_visibility.connect(ui_layer.update_next_and_prev_ui)
@@ -115,31 +115,62 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if OS.has_feature("editor"):
 			get_tree().quit()
-	# TODO: implement shortcuts for LEFT, RIGHT, CONFIRM, ROLL, PASS.
-	#if event.is_action_pressed("ui_select"):
-		#if game:
-			#game._on_player_choose_draw()
+	if event.is_action_pressed("my_about"):
+		if ui_layer:
+			ui_layer._on_about_button_pressed()
+	if event.is_action_pressed("my_mute"):
+		_on_settings_button_pressed()
+	if event.is_action_pressed("my_next_level"):
+		_on_left_button_pressed()
+	if event.is_action_pressed("my_prev_level"):
+		_on_right_button_pressed()
+	if event.is_action_pressed("my_next"):
+		_on_next_button_pressed()
+	if event.is_action_pressed("my_prev"):
+		_on_prev_button_pressed()
+	if event.is_action_pressed("my_pass"):
+		_on_pass_button_pressed()
+	if event.is_action_pressed("my_roll"):
+		_on_step_button_pressed()
+	if event.is_action_pressed("my_confirm"):
+		_on_confirm_button_pressed()
 
 #############
 # listeners #
 #############
 
 func _on_left_button_pressed() -> void:
-	game.cycle_level_prev()
+	if game:
+		game.cycle_level_prev()
 
 func _on_right_button_pressed() -> void:
-	game.cycle_level_next()
+	if game:
+		game.cycle_level_next()
 
 func _on_pass_button_pressed() -> void:
-	game._on_turn_passed()
+	if game:
+		game.on_turn_passed()
 
 func _on_step_button_pressed() -> void:
-	var pips : int = _roll_the_dice()
-	game._on_player_dice_roll(pips)
+	if game:
+		var pips : int = _roll_the_dice()
+		game.on_player_dice_roll(pips)
 
 func _on_settings_button_pressed() -> void:
 	if music_player:
 		music_player.toggle_mute()
+
+func _on_prev_button_pressed() -> void:
+	if game:
+		game.on_input_prev()
+
+func _on_next_button_pressed() -> void:
+	if game:
+		game.on_input_next()
+
+func _on_confirm_button_pressed() -> void:
+	if game:
+		game.on_player_choose_draw()
 
 #############
 # publics   #
@@ -171,15 +202,3 @@ func _roll_the_dice() -> int:
 	number_label.visible = true
 	number_label.text = str(num)
 	return num
-
-func _on_prev_button_pressed() -> void:
-	if game:
-		game.on_input_prev()
-
-func _on_next_button_pressed() -> void:
-	if game:
-		game.on_input_next()
-
-func _on_confirm_button_pressed() -> void:
-	if game:
-		game.on_player_choose_draw()
