@@ -21,7 +21,14 @@ demo:
 
 known bugs:
 
-  - highlighting pieces to draw does reset propperly when switching to next piece to draw.
+  - highlighting pieces to draw does reset properly when switching to next piece to draw.
+
+what's next
+
+  - [ ] fix visual bugs during piece selection.
+  - [ ] remove next/prev arrows when there is no choice (len(draws) == 1).
+  - [ ] arrows above currently selected draw (from from_tile to to_tile).
+  - [ ] visualize player's on-board routes with a graph.
 
 ## credits
 
