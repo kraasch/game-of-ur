@@ -10,12 +10,12 @@ demo:
 
 <table>
   <tr>
-    <td><img src="./demo/image_1.png" width="200"></td>
-    <td><img src="./demo/image_2.png" width="200"></td>
+    <td><img src="./demo/image_1.png" width="400"></td>
+    <td><img src="./demo/image_2.png" width="400"></td>
   </tr>
   <tr>
-    <td><img src="./demo/image_3.png" width="200"></td>
-    <td><img src="./demo/image_4.png" width="200"></td>
+    <td><img src="./demo/image_3.png" width="400"></td>
+    <td><img src="./demo/image_4.png" width="400"></td>
   </tr>
 </table>
 
