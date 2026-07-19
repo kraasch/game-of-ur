@@ -366,7 +366,7 @@ func get_tile_by_id(tile_id : String) -> Tile:
 # functions #
 #############
 
-static func _remove_draws_onto_same_player(draws : Array[Draw], player : Player) -> Array[Draw]:
+static func remove_draws_onto_same_player(draws : Array[Draw], player : Player) -> Array[Draw]:
 	var result : Array[Draw] = []
 	for draw : Draw in draws:
 		var to_loc : Location = draw.to

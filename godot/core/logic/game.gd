@@ -238,7 +238,7 @@ func _deal_with_player_choice(draw : Draw) -> void:
 
 func _display_choosable_tiles(pips : int, player : Player) -> void:
 	var draws : Array[Draw] = level.get_draws(pips, player)
-	draws = Level._remove_draws_onto_same_player(draws, player)
+	draws = Level.remove_draws_onto_same_player(draws, player)
 	if len(draws) == 0:
 		_set_game_state(GameState.WAITING_FOR_PASS)
 		freeze_dice.emit()
