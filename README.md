@@ -38,10 +38,10 @@ what's next
   - [X] unite button input under universal button.
   - [X] fix bug of null reference when playing oen board and then moving to another.
   - [ ] filter out draws onto heart tiles as possible moves.
-  - [ ] only allow controller 1 input for player 1, etc
   - [ ] arrows above currently selected draw (from from_tile to to_tile).
-  - [ ] visualize player's on-board routes with a graph.
   - [ ] fix big bug: overlapping paths are treated like intersections, but should not (eg second traditional board, #4).
+  - [ ] visualize player's on-board routes with a graph.
+  - [ ] only allow controller 1 input for player 1, etc
 
 ## credits
 
