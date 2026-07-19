@@ -3,6 +3,11 @@
 
 info:
 
+  - github: https://github.com/kraasch/game-of-ur
+  - itch.io: https://kraasch.itch.io/ur
+
+version:
+
   - godot version 4.6
   - gdunit4 version 6.1.3
 
