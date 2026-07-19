@@ -136,6 +136,9 @@ func _unhandled_input(event):
 		_on_step_button_pressed()
 	if event.is_action_pressed("my_confirm"):
 		_on_confirm_button_pressed()
+	if event.is_action_pressed("my_universal"):
+		if game:
+			game.on_universal_input()
 
 #############
 # listeners #

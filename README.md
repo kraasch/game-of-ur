@@ -35,6 +35,8 @@ what's next
   - [X] add in controller support.
   - [X] fix visual bugs during piece selection.
   - [X] hide next/prev arrows when there is no choice to left or right(index == 0 or index == len(draws)).
+  - [X] unite button input under universal button.
+  - [ ] only allow controller 1 input for player 1, etc
   - [ ] arrows above currently selected draw (from from_tile to to_tile).
   - [ ] visualize player's on-board routes with a graph.
 

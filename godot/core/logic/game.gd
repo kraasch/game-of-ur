@@ -39,6 +39,13 @@ enum FOCUS_SHIFT {LEFT, RIGHT}
 # constants #
 #############
 
+const STATE_STRINGS : Array[String] = [
+	'WAITING_FOR_DICE_ROLL',
+	'WAITING_FOR_TILE_CHOICE',
+	'WAITING_FOR_PASS',
+	'RESOLVING_TURN',
+	'GAME_OVER',
+]
 const INITIAL_DRAWS : int = 7
 
 #############
@@ -142,6 +149,16 @@ func on_input_next() -> void:
 	if not state == GameState.WAITING_FOR_TILE_CHOICE:
 		return
 	_shift_focus(FOCUS_SHIFT.RIGHT)
+
+func on_universal_input() -> void:
+	print('universal input')
+	match state:
+		GameState.WAITING_FOR_TILE_CHOICE:
+			on_player_choose_draw()
+		GameState.WAITING_FOR_DICE_ROLL:
+			on_player_dice_roll()
+		GameState.WAITING_FOR_PASS:
+			on_turn_passed()
 
 #############
 # publics   #
@@ -358,6 +375,7 @@ func _set_player_id(pid : int) -> void:
 	player_changed.emit(pid)
 
 func _set_game_state(_state : GameState) -> void:
+	print('current state ' + STATE_STRINGS[_state])
 	state = _state
 
 ###########
