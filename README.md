@@ -30,10 +30,11 @@ known bugs:
 
 what's next
 
-  - [X] remove next/prev arrows when there is no choice (len(draws) == 1).
+  - [X] hide next/prev arrows when there is no choice (len(draws) == 1).
   - [X] add in shortcuts for button presses.
   - [X] add in controller support.
-  - [ ] fix visual bugs during piece selection.
+  - [X] fix visual bugs during piece selection.
+  - [X] hide next/prev arrows when there is no choice to left or right(index == 0 or index == len(draws)).
   - [ ] arrows above currently selected draw (from from_tile to to_tile).
   - [ ] visualize player's on-board routes with a graph.
 
