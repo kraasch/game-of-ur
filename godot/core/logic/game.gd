@@ -11,6 +11,8 @@ class_name  Game
 
 signal change_navigation_visibility(is_show : bool)
 signal change_left_right_visibility(is_show : bool)
+signal change_right_visibility(is_show : bool)
+signal change_left_visibility(is_show : bool)
 signal level_changed(level_num : int)
 signal player_changed(pid : int)
 signal winner_is(pid : int)
@@ -227,9 +229,16 @@ func _display_choosable_tiles(pips : int, player : Player) -> void:
 	if len(draws) == 1:
 		change_left_right_visibility.emit(false)
 	_highlight_possible_draws(draws)
-	current_focus = draws[0]
-	_set_focus()
 	current_draws = draws
+	_update_focus(0)
+
+func _update_focus(index : int) -> void:
+	change_left_visibility.emit(not index == 0)
+	change_right_visibility.emit(not index == len(current_draws) - 1)
+	_remove_focus()
+	var new_draw : Draw = current_draws[index]
+	current_focus = new_draw
+	_set_focus()
 
 func _remove_old_hightlights(draws : Array[Draw]) -> void:
 	for draw : Draw in draws:
@@ -267,6 +276,8 @@ func _set_focus() -> void:
 		(to.glow as Glow).set_focus()
 
 func _remove_focus() -> void:
+	if not current_focus:
+		return
 	var draw : Draw = current_focus
 	var to_loc : Location = draw.to
 	var from_loc : Location = draw.from
@@ -287,10 +298,7 @@ func _shift_focus(focus_shift : FOCUS_SHIFT) -> void: # TODO: refine.
 		0,
 		current_draws.size() - 1
 	)
-	var new_draw : Draw = current_draws[next_index]
-	_remove_focus()
-	current_focus = new_draw
-	_set_focus()
+	_update_focus(next_index)
 
 func _execute_draw(draw : Draw) -> void:
 	var info : Dictionary = level.execute_draw(draw, Player.PLAYERS[current_pid])

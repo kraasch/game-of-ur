@@ -69,6 +69,12 @@ func update_next_and_prev_ui(is_show : bool) -> void:
 	for button : TextureButton in [prev_button, next_button]:
 		_update_button(button, is_show)
 
+func update_next_ui(is_show : bool) -> void:
+	_update_button(next_button, is_show)
+
+func update_prev_ui(is_show : bool) -> void:
+	_update_button(prev_button, is_show)
+
 func disable_dice() -> void:
 	step_button.disabled = true
 	step_button.modulate = Color.RED

@@ -86,6 +86,8 @@ func _setup_game() -> void:
 	# TODO: pull this into the game's connect_game() method.
 	game.change_navigation_visibility.connect(ui_layer.update_navigation_ui)
 	game.change_left_right_visibility.connect(ui_layer.update_next_and_prev_ui)
+	game.change_right_visibility.connect(ui_layer.update_next_ui)
+	game.change_left_visibility.connect(ui_layer.update_prev_ui)
 	game.freeze_dice.connect(ui_layer.disable_dice)
 	game.unfreeze_dice.connect(ui_layer.enable_dice)
 	game.freeze_pass_turn.connect(ui_layer.disable_pass)
