@@ -57,10 +57,17 @@ enum MOUSE {BEGIN_BUTTON_HOVER, END_BUTTON_HOVER}
 	next_button,
 ]
 
+func _update_button(button : TextureButton, is_show : bool) -> void:
+	button.visible = is_show
+	button.disabled = not is_show
+
 func update_navigation_ui(is_show : bool) -> void:
 	for button : TextureButton in [prev_button, confirm_button, next_button]:
-		button.visible = is_show
-		button.disabled = not is_show
+		_update_button(button, is_show)
+
+func update_next_and_prev_ui(is_show : bool) -> void:
+	for button : TextureButton in [prev_button, next_button]:
+		_update_button(button, is_show)
 
 func disable_dice() -> void:
 	step_button.disabled = true

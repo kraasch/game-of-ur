@@ -10,6 +10,7 @@ class_name  Game
 #############
 
 signal change_navigation_visibility(is_show : bool)
+signal change_left_right_visibility(is_show : bool)
 signal level_changed(level_num : int)
 signal player_changed(pid : int)
 signal winner_is(pid : int)
@@ -201,7 +202,6 @@ func _deal_with_player_choice(draw : Draw) -> void:
 		change_navigation_visibility.emit(false)
 		winner_is.emit(current_pid)
 
-
 func _display_choosable_tiles(pips : int, player : Player) -> void:
 	var draws : Array[Draw] = level.get_draws(pips, player)
 	draws = Level._remove_draws_onto_same_player(draws, player)
@@ -210,6 +210,8 @@ func _display_choosable_tiles(pips : int, player : Player) -> void:
 		freeze_dice.emit()
 		unfreeze_pass_turn.emit()
 		return
+	if len(draws) == 1:
+		change_left_right_visibility.emit(false)
 	_highlight_possible_draws(draws)
 	current_focus = draws[0]
 	_set_focus()
