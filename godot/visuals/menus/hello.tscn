@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cnfj53r5yyu0k"]
+
+[ext_resource type="Script" uid="uid://bbvhetlt812si" path="res://visuals/menus/hello.gd" id="1_36lll"]
+[ext_resource type="Theme" uid="uid://b1l65utswjhef" path="res://visuals/menus/hello_font_theme.tres" id="2_36lll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vi6p"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+
+[node name="hello" type="Control" unique_id=1121080687]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_36lll")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2079176116]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.047058824, 0.0627451, 0.12156863, 0.972549)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1977868575]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=1726220949]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=745182466]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1863470588]
+custom_minimum_size = Vector2(800, 275)
+layout_mode = 2
+theme = ExtResource("2_36lll")
+bbcode_enabled = true
+text = "[font_size=50]Royal[/font_size]
+[font_size=120]Game of Ur[/font_size]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1461351759]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxFlat_0vi6p")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=486436537]
+custom_minimum_size = Vector2(800, 220)
+layout_mode = 2
+theme = ExtResource("2_36lll")
+theme_override_font_sizes/normal_font_size = 30
+text = "The Royal Game of Ur is an ancient Mesopotamian board game, dating to around 2600 BC, in which players race their pieces along a shared path using dice throws to determine movement.
+Some might say this game is as retro as it gets."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=2044611443]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+theme = ExtResource("2_36lll")
+theme_override_font_sizes/normal_font_size = 30
+text = "(interact to start game)"
+horizontal_alignment = 1
+vertical_alignment = 1

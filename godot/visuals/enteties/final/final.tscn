@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cdimmmbugrp72"]
+
+[ext_resource type="Script" uid="uid://sl86pirgc63j" path="res://visuals/enteties/final/final.gd" id="1_m58tc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m58tc"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m58tc"]
+material = SubResource("StandardMaterial3D_m58tc")
+size = Vector3(2, 0.1, 2)
+
+[node name="final" type="Node3D" unique_id=173181243]
+script = ExtResource("1_m58tc")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=1761468722]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.05, 1)
+mesh = SubResource("BoxMesh_m58tc")
+
+[node name="label" type="Label3D" parent="." unique_id=939203845]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 1, 0.11, 1)
+text = "10"
+font_size = 320

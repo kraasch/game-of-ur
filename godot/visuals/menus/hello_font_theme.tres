@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://b1l65utswjhef"]
+
+[ext_resource type="FontFile" uid="uid://da3s1rd671e4h" path="res://assets/font/diogenes/DIOGENES.ttf" id="1_2aqd5"]
+
+[resource]
+default_font = ExtResource("1_2aqd5")

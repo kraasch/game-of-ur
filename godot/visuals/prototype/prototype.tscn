@@ -1,0 +1,356 @@
+[gd_scene format=3 uid="uid://ytqkjyx3d1cg"]
+
+[ext_resource type="Script" uid="uid://615srxml5uan" path="res://visuals/prototype/prototype.gd" id="1_chnn0"]
+[ext_resource type="Script" uid="uid://g8s7of668vm8" path="res://visuals/prototype/camera_3d.gd" id="2_7lk4w"]
+[ext_resource type="Script" uid="uid://4u8idxv8n4sy" path="res://visuals/prototype/shader_rect.gd" id="3_em3gu"]
+[ext_resource type="Script" uid="uid://bg4o2843tyu6u" path="res://visuals/prototype/ui_layer.gd" id="4_sutew"]
+[ext_resource type="Texture2D" uid="uid://dptve7ambrgkj" path="res://assets/icons/movie.png" id="5_j8a76"]
+[ext_resource type="Texture2D" uid="uid://cnqwepx22xfw" path="res://assets/icons/home.png" id="6_7dt1p"]
+[ext_resource type="Texture2D" uid="uid://jqy7hg0fst0m" path="res://assets/icons/return.png" id="7_g1s22"]
+[ext_resource type="Texture2D" uid="uid://df0c2xov6hm2h" path="res://assets/icons/arrowLeft.png" id="8_g1s22"]
+[ext_resource type="Texture2D" uid="uid://dy8hslp880536" path="res://assets/icons/audioOn.png" id="9_m7ynk"]
+[ext_resource type="Texture2D" uid="uid://k708bl43sbhs" path="res://assets/icons/multiplayer.png" id="9_pc71m"]
+[ext_resource type="Texture2D" uid="uid://kkophcr81rtq" path="res://assets/icons/arrowRight.png" id="9_rb7bs"]
+[ext_resource type="Texture2D" uid="uid://kva4tov5kf4v" path="res://assets/icons/gamepad1.png" id="10_rb7bs"]
+[ext_resource type="Texture2D" uid="uid://biq10athh0cc2" path="res://assets/icons/next.png" id="11_kcsdr"]
+[ext_resource type="Texture2D" uid="uid://3d460sweny05" path="res://assets/cursors/look_d.png" id="13_pq3sf"]
+[ext_resource type="Theme" uid="uid://b1l65utswjhef" path="res://visuals/menus/hello_font_theme.tres" id="14_ifle2"]
+[ext_resource type="Script" uid="uid://h7l8bmwkl3ft" path="res://visuals/prototype/credits_layer.gd" id="14_m7ynk"]
+[ext_resource type="Texture2D" uid="uid://bw7yhgdssglxr" path="res://assets/icons/checkmark.png" id="15_q6xao"]
+[ext_resource type="Script" uid="uid://cb408yua7ducf" path="res://visuals/prototype/game_over_layer.gd" id="17_pq3sf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1s22"]
+albedo_color = Color(1, 0.45882353, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1s22"]
+material = SubResource("StandardMaterial3D_g1s22")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lk4w"]
+albedo_color = Color(0.3372249, 0.41882664, 0.4267553, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0adw8"]
+material = SubResource("StandardMaterial3D_7lk4w")
+size = Vector2(2000, 2000)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8a76"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pq3sf"]
+load_path = "res://.godot/imported/arrowLeft.png-0dfbefa05c22a17a06f1b8b12314ed4a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a5jhi"]
+load_path = "res://.godot/imported/arrowRight.png-a75134f3e95ae45021e2ef827567fd1a.ctex"
+
+[node name="prototype" type="Node3D" unique_id=582963065]
+script = ExtResource("1_chnn0")
+
+[node name="map_center_pill" type="MeshInstance3D" parent="." unique_id=344026377]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+mesh = SubResource("CapsuleMesh_g1s22")
+
+[node name="debug_container" type="Node3D" parent="." unique_id=411497694]
+unique_name_in_owner = true
+
+[node name="misc_container" type="Node3D" parent="." unique_id=103561520]
+unique_name_in_owner = true
+
+[node name="environment_container" type="Node3D" parent="." unique_id=521293605]
+unique_name_in_owner = true
+
+[node name="cam" type="Camera3D" parent="." unique_id=256030340]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.71372736, 0.7004236, 0, -0.7004236, 0.71372736, 4, 5, 7)
+script = ExtResource("2_7lk4w")
+
+[node name="ground" type="MeshInstance3D" parent="." unique_id=1299725216]
+mesh = SubResource("PlaneMesh_0adw8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=731217682]
+transform = Transform3D(1, 0, 0, 0, 0.018307455, 0.99983245, 0, -0.99983245, 0.018307455, 0, 8.333479, 0)
+
+[node name="shader_layer" type="CanvasLayer" parent="." unique_id=1110831940]
+
+[node name="shader_rect" type="ColorRect" parent="shader_layer" unique_id=2129206652]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_j8a76")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("3_em3gu")
+
+[node name="ui_layer" type="CanvasLayer" parent="." unique_id=693957372]
+unique_name_in_owner = true
+script = ExtResource("4_sutew")
+
+[node name="top_left_hbox" type="HBoxContainer" parent="ui_layer" unique_id=304745210]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="reset_perspective_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1386967657]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("6_7dt1p")
+
+[node name="shader_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=404992350]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_j8a76")
+
+[node name="about_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1852576180]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_pc71m")
+
+[node name="settings_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=668865967]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_m7ynk")
+
+[node name="left_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1765995351]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("8_g1s22")
+
+[node name="level_label" type="Label" parent="ui_layer/top_left_hbox" unique_id=372516432]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "#?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="right_button" type="TextureButton" parent="ui_layer/top_left_hbox" unique_id=1527704386]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_rb7bs")
+
+[node name="top_right_hbox" type="HBoxContainer" parent="ui_layer" unique_id=676388932]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="pass_button" type="TextureButton" parent="ui_layer/top_right_hbox" unique_id=1582805708]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("11_kcsdr")
+stretch_mode = 3
+
+[node name="step_button" type="TextureButton" parent="ui_layer/top_right_hbox" unique_id=649124983]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("7_g1s22")
+stretch_mode = 3
+
+[node name="number_label" type="Label" parent="ui_layer/top_right_hbox" unique_id=1562662209]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="eye_1" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=2004469224]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("13_pq3sf")
+stretch_mode = 5
+
+[node name="eye_2" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=533135865]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("13_pq3sf")
+stretch_mode = 5
+
+[node name="eye_3" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=1007446588]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("13_pq3sf")
+stretch_mode = 5
+
+[node name="eye_4" type="TextureRect" parent="ui_layer/top_right_hbox" unique_id=1984488798]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("13_pq3sf")
+stretch_mode = 5
+
+[node name="top_center_hbox" type="HBoxContainer" parent="ui_layer" unique_id=490156481]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="player_indicator" type="TextureRect" parent="ui_layer/top_center_hbox" unique_id=1370820006]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("10_rb7bs")
+
+[node name="bot_center_hbox" type="HBoxContainer" parent="ui_layer" unique_id=1687906004]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -100.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="prev_button" type="TextureButton" parent="ui_layer/bot_center_hbox" unique_id=1514322331]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture_normal = SubResource("CompressedTexture2D_pq3sf")
+
+[node name="confirm_button" type="TextureButton" parent="ui_layer/bot_center_hbox" unique_id=278317080]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("15_q6xao")
+
+[node name="next_button" type="TextureButton" parent="ui_layer/bot_center_hbox" unique_id=1072787510]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture_normal = SubResource("CompressedTexture2D_a5jhi")
+
+[node name="credits_layer" type="CanvasLayer" parent="." unique_id=1678586559]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("14_m7ynk")
+
+[node name="ColorRect" type="ColorRect" parent="credits_layer" unique_id=31481305]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04823362, 0.062068067, 0.11965335, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="credits_layer" unique_id=1891084025]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="credits_layer/CenterContainer" unique_id=2093715732]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="credits_layer/CenterContainer/MarginContainer" unique_id=2122772764]
+layout_mode = 2
+
+[node name="label_0" type="RichTextLabel" parent="credits_layer/CenterContainer/MarginContainer/VBoxContainer" unique_id=926469165]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 275)
+layout_mode = 2
+theme = ExtResource("14_ifle2")
+bbcode_enabled = true
+text = "[font_size=56]Royal[/font_size]
+[font_size=80]Game of Ur[/font_size]
+[font_size=20]A game by [url=https://kraasch.itch.io/]Alex[/url][/font_size]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_1" type="RichTextLabel" parent="credits_layer/CenterContainer/MarginContainer/VBoxContainer" unique_id=247633780]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 240)
+layout_mode = 2
+theme = ExtResource("14_ifle2")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "With the help of
+[ul bullet=*]
+[url=https://godotengine.org/license/]Godot Game Engine (MIT)[/url]
+[url=https://www.dafont.com/diogenes.font]Diogenes (Open Font)[/url], 
+and music by[br][url=https://opengameart.org/]Alexandr Zhelanov, Ted Kerr, Bijan, Stereophysics (Enrique Ceseña),[br]Obscure Music, StumpyStrust, Joth, brandon75689[/url].
+[/ul]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_2" type="RichTextLabel" parent="credits_layer/CenterContainer/MarginContainer/VBoxContainer" unique_id=351274709]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+theme = ExtResource("14_ifle2")
+theme_override_font_sizes/normal_font_size = 20
+text = "(interact to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_over_layer" type="CanvasLayer" parent="." unique_id=996841591]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("17_pq3sf")
+
+[node name="ColorRect" type="ColorRect" parent="game_over_layer" unique_id=2090269335]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04823362, 0.062068067, 0.11965335, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="game_over_layer" unique_id=1515171019]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="game_over_layer/CenterContainer" unique_id=1925261797]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="game_over_layer/CenterContainer/MarginContainer" unique_id=264414210]
+layout_mode = 2
+
+[node name="game_over_result_label" type="RichTextLabel" parent="game_over_layer/CenterContainer/MarginContainer/VBoxContainer" unique_id=1790734308]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 275)
+layout_mode = 2
+theme = ExtResource("14_ifle2")
+bbcode_enabled = true
+text = "The result goes here."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_2" type="RichTextLabel" parent="game_over_layer/CenterContainer/MarginContainer/VBoxContainer" unique_id=1957371282]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+theme = ExtResource("14_ifle2")
+theme_override_font_sizes/normal_font_size = 20
+text = "(interact to continue)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ui_layer/top_left_hbox/reset_perspective_button" to="cam" method="_on_reset_perspective_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/shader_button" to="shader_layer/shader_rect" method="_on_shader_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/about_button" to="ui_layer" method="_on_about_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/left_button" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/right_button" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_right_hbox/pass_button" to="." method="_on_pass_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_right_hbox/step_button" to="." method="_on_step_button_pressed"]
+[connection signal="pressed" from="ui_layer/bot_center_hbox/prev_button" to="." method="_on_prev_button_pressed"]
+[connection signal="pressed" from="ui_layer/bot_center_hbox/confirm_button" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="ui_layer/bot_center_hbox/next_button" to="." method="_on_next_button_pressed"]

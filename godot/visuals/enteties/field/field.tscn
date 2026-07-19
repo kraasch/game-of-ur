@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c4a5tbhpu31p4"]
+
+[ext_resource type="Script" uid="uid://cfc8b3eyja5p6" path="res://visuals/enteties/field/field.gd" id="1_4tbra"]
+[ext_resource type="PackedScene" uid="uid://cu2hxebiorfsl" path="res://visuals/enteties/piece/piece.tscn" id="2_nwpgl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwpgl"]
+albedo_color = Color(0.021921474, 0.07359492, 0.25824928, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ln5fr"]
+material = SubResource("StandardMaterial3D_nwpgl")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_87qs8"]
+size = Vector3(0.9, 0.15, 0.9)
+
+[node name="field" type="Node3D" unique_id=541989634]
+script = ExtResource("1_4tbra")
+
+[node name="outer" type="MeshInstance3D" parent="." unique_id=757685757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+mesh = SubResource("BoxMesh_ln5fr")
+
+[node name="inner" type="MeshInstance3D" parent="." unique_id=816496164]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+mesh = SubResource("BoxMesh_87qs8")
+
+[node name="piece" parent="." unique_id=454058463 instance=ExtResource("2_nwpgl")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.22, 0.5)
+visible = false

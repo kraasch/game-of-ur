@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cu2hxebiorfsl"]
+
+[ext_resource type="Script" uid="uid://baltaq4waffoh" path="res://visuals/enteties/piece/piece.gd" id="1_wotpd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g5dr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wotpd"]
+material = SubResource("StandardMaterial3D_1g5dr")
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wotpd"]
+albedo_color = Color(0.31368652, 0.3136585, 0.27896503, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1g5dr"]
+material = SubResource("StandardMaterial3D_wotpd")
+radius = 0.1
+height = 0.05
+
+[node name="piece" type="Node3D" unique_id=454058463]
+script = ExtResource("1_wotpd")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=902316258]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_wotpd")
+
+[node name="eye_center" type="MeshInstance3D" parent="." unique_id=873332516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("SphereMesh_1g5dr")
+
+[node name="eye_br" type="MeshInstance3D" parent="." unique_id=864391101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.085, 0.2)
+mesh = SubResource("SphereMesh_1g5dr")
+
+[node name="eye_bl" type="MeshInstance3D" parent="." unique_id=427535360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.085, 0.2)
+mesh = SubResource("SphereMesh_1g5dr")
+
+[node name="eye_tr" type="MeshInstance3D" parent="." unique_id=132665312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.085, -0.2)
+mesh = SubResource("SphereMesh_1g5dr")
+
+[node name="eye_tl" type="MeshInstance3D" parent="." unique_id=54789434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.085, -0.2)
+mesh = SubResource("SphereMesh_1g5dr")
