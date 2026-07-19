@@ -114,9 +114,10 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if OS.has_feature("editor"):
 			get_tree().quit()
-	if event.is_action_pressed("ui_select"):
-		if game:
-			game._on_player_choose_draw()
+	# TODO: implement shortcuts for LEFT, RIGHT, CONFIRM, ROLL, PASS.
+	#if event.is_action_pressed("ui_select"):
+		#if game:
+			#game._on_player_choose_draw()
 
 #############
 # listeners #
