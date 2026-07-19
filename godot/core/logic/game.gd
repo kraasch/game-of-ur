@@ -151,7 +151,6 @@ func on_input_next() -> void:
 	_shift_focus(FOCUS_SHIFT.RIGHT)
 
 func on_universal_input() -> void:
-	print('universal input')
 	match state:
 		GameState.WAITING_FOR_TILE_CHOICE:
 			on_player_choose_draw()
@@ -385,23 +384,24 @@ func _set_game_state(_state : GameState) -> void:
 static func _setup_finals_for_players(players : int) -> void:
 	for i : int in range(players):
 		var player : Player = Player.PLAYERS[i]
+		const MINI_MARGIN : float = 0.1
 		const Y_FINAL_START : float = 3.0
-		const X_FINAL_START : float = -2.5
-		const X_FINAL_END : float = 8.5
-		const GAP_BETWEEN_FINALS : float = -2.5
+		const X_FINAL_START : float = -2.5 - MINI_MARGIN
+		const X_FINAL_END : float = 8.5 + MINI_MARGIN
+		const GAP_BETWEEN_FINALS : float = 2.0 + MINI_MARGIN
 		# TODO: extract method for setting up END or START.
 		var final_start : Final = final_scene.instantiate()
 		container.add_child(final_start)
 		fast_lookup[player.start] = final_start
 		final_start.set_color(player.color)
 		player.start.content_number_changed.connect(final_start.update_number)
-		final_start.global_position = Vector3(X_FINAL_START, 0, Y_FINAL_START + i * GAP_BETWEEN_FINALS)
+		final_start.global_position = Vector3(X_FINAL_START, 0, Y_FINAL_START + i * -GAP_BETWEEN_FINALS)
 		var final_end : Final = final_scene.instantiate()
 		container.add_child(final_end)
 		fast_lookup[player.end] = final_end
 		final_end.set_color(player.color)
 		player.end.content_number_changed.connect(final_end.update_number)
-		final_end.global_position = Vector3(X_FINAL_END, 0, Y_FINAL_START + i * GAP_BETWEEN_FINALS)
+		final_end.global_position = Vector3(X_FINAL_END, 0, Y_FINAL_START + i * -GAP_BETWEEN_FINALS)
 
 static func _set_initial_number_of_draws(intial_draws : int) -> void:
 	for i : int in range(len(Player.PLAYERS)):
