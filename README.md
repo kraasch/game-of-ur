@@ -19,6 +19,10 @@ demo:
   </tr>
 </table>
 
+known bugs:
+
+  - highlighting pieces to draw does reset propperly when switching to next piece to draw.
+
 ## credits
 
 See license file [LICENSE.md](./LICENSE.md).
