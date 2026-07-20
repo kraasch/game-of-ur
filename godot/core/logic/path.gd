@@ -82,6 +82,64 @@ func _init(paths : Array[String], _player : Player) -> void:
 # publics   #
 #############
 
+static func convert_to_vectors(node_id : String) -> Array[Vector3]:
+	var result : Array[Vector3] = [Vector3(), Vector3()]
+	# TODO: implement.
+	return result
+
+static func get_tile_graph(node_ids : Array[String]) -> Array:
+	var result : Array = []
+	for node_id : String in node_ids:
+		var vecs : Array[Vector3] = convert_to_vectors(node_id)
+		result.append(vecs)
+	return result
+
+#func to_tree() -> Array: # TODO: remove.
+	#return [
+		#[Vector3(1.0, 0.0, 2.0), Vector3(3.0, 0.0, 3.0)],
+		#[Vector3(2.0, 0.0, 2.0), Vector3(3.0, 0.0, 3.0)],
+	#]
+
+func to_node_ids_array() -> Array[Array]:
+	var result: Array[Array] = []
+	var incoming := {}
+	for from in edges:
+		incoming[from] = incoming.get(from, 0)
+		for to in edges[from]:
+			incoming[to] = incoming.get(to, 0) + 1
+	for node in incoming:
+		if incoming[node] == 0:
+			_walk(node, [], result, incoming, true)
+	for i : int in range(len(result)):
+		var arr : Array = result[i]
+		result[i] = arr.filter(func(item): return item != "START" and item != "END")
+	return result
+	
+func _walk(
+	node: String,
+	current: Array,
+	result: Array[Array],
+	incoming: Dictionary,
+	is_main: bool
+) -> void:
+	current.append(node)
+	# Stop a side branch when it merges back.
+	if !is_main and incoming.get(node, 0) > 1:
+		result.append(current.duplicate())
+		return
+	if !edges.has(node):
+		result.append(current.duplicate())
+		return
+	var children: Array = edges[node]
+	if children.size() == 1:
+		_walk(children[0], current, result, incoming, is_main)
+		return
+	# Continue the current path on the first child.
+	_walk(children[0], current.duplicate(), result, incoming, is_main)
+	# Remaining children are side branches.
+	for i in range(1, children.size()):
+		_walk(children[i], [node], result, incoming, false)
+
 func calculate_possible_draws(pips : int, node_ids : Array[String], start_has_piece : bool) -> Array[NodesDraw]:
 	var draws : Array[NodesDraw] = []
 	var helper_dict : Dictionary[String, bool] = {}

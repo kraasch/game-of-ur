@@ -2,6 +2,10 @@ extends RefCounted
 class_name Level
 
 #############
+# classes   #
+#############
+
+#############
 # statics   #
 #############
 
@@ -259,13 +263,6 @@ func _init(_map_text : String, _cell_types : Dictionary, _graphs_with_branches :
 #############
 # publics   #
 #############
-
-func get_tile_graph() -> Array[Array]: # NOTE: actual type is Array[Array[Vector3]]
-	return [
-		[Vector3(0,0,0), Vector3(2,0,0)],
-		[Vector3(2,0,0), Vector3(2,0,2)],
-		[Vector3(2,0,2), Vector3(0,0,1)],
-	]
 
 func someone_won() -> bool:
 	var result : bool = false

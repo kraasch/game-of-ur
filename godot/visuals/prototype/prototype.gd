@@ -109,9 +109,17 @@ func _setup_game() -> void:
 func _setup_graph(game : Game) -> void:
 	if not game:
 		return
-	var edges = game.get_tile_graph()
+	var level : Level = game.level
+	if not level:
+		return
 	graph = Graph.new(misc_container)
-	graph.draw_graph(edges, Color.RED)
+	var paths : Array[Path] = level.paths
+	for i : int in range(len(paths)):
+		var path : Path = paths[i]
+		#var player : Player = level.players[i]
+		for node_ids : Array[String] in path.to_node_ids_array():
+			var edges : Array = Path.get_tile_graph(node_ids)
+			graph.draw_graph(edges, Color.RED) # TODO: player.color
 
 func _unhandled_input(event):
 	# NOTE: useful for debugging, this leaves the game when hitting the ESC key.
