@@ -94,6 +94,12 @@ func test_execute_draw_01() -> void:
 	level.override_tiles_player_by_id('c1', player)
 	var draws : Array[Draw] = level.get_draws(pips, player)
 	var meta : Array[Draw.DRAW_TYPE] = Level.get_draws_meta(draws, player)
+	# EFFECTS .. ROUTE ...... MOVES
+	# ........... VV ........ PIPS=4 
+	# 12121 .... ##P##<=START 01P00
+	# -131- .... -#P#- ...... -020-
+	# 12121 END=>E#### ......430000
+	# ........... AA ........ MOVES=4
 	var expected_draws : Array[Draw] = [
 		Draw.new(player.start, level.get_tile_by_id('b0')),
 		Draw.new(player.start, level.get_tile_by_id('c1')),
@@ -112,7 +118,7 @@ func test_execute_draw_01() -> void:
 			Level.DRAW_INFO.DATA : draws[0],
 			Level.DRAW_INFO.REPEAT : true,
 		}
-	# EXECUTE.
+	# EXECUTE
 	assert_array(draws).is_equal(expected_draws)
 	assert_array(meta).is_equal(expected_meta)
 	var actual : Dictionary = level.execute_draw(draws[0], player)

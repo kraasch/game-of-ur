@@ -8,8 +8,8 @@ class_name Level
 enum LEVEL {LVL1, LVL2, LVL3, LVL4, LVL5, LVL6, LVL7, LVL8}
 
 static var level_creators : Array[Callable] = [
-	_create_level_00, _create_level_01, _create_level_02, _create_level_03,
-	_create_level_04, _create_level_05, _create_level_06, _create_level_07,
+	_create_level_01, _create_level_02, _create_level_03, _create_level_04,
+	_create_level_05, _create_level_06, _create_level_07, _create_level_08,
 ]
 
 static func create(level : LEVEL) -> Level:
@@ -21,8 +21,8 @@ static func create_all_levels() -> Array[Level]:
 		levels.append(Level.create(level))
 	return levels
 
-static func _create_level_00() -> Level:
-	return Level.new( # 0
+static func _create_level_01() -> Level:
+	return Level.new(
 		'1' + NL +
 		'2' + NL +
 		'3' + NL +
@@ -42,8 +42,8 @@ static func _create_level_00() -> Level:
 		],
 	)
 
-static func _create_level_01() -> Level:
-	return Level.new( # 1
+static func _create_level_02() -> Level:
+	return Level.new(
 		'131' + NL +
 		'323' + NL +
 		'131',
@@ -60,8 +60,8 @@ static func _create_level_01() -> Level:
 		]
 	)
 
-static func _create_level_02() -> Level:
-	return Level.new( # 2
+static func _create_level_03() -> Level:
+	return Level.new(
 		'2111--21' + NL +
 		'11131111' + NL +
 		'2111--21',
@@ -79,8 +79,8 @@ static func _create_level_02() -> Level:
 		]
 	)
 
-static func _create_level_03() -> Level:
-	return Level.new( # 3
+static func _create_level_04() -> Level:
+	return Level.new(
 		'2111--21' + NL +
 		'11131111' + NL +
 		'2111--21',
@@ -98,8 +98,8 @@ static func _create_level_03() -> Level:
 		]
 	)
 
-static func _create_level_04() -> Level:
-	return Level.new( # 4
+static func _create_level_05() -> Level:
+	return Level.new(
 		'1111-' + NL +
 		'-1-1-' + NL +
 		'-1111',
@@ -118,8 +118,8 @@ static func _create_level_04() -> Level:
 		]
 	)
 
-static func _create_level_05() -> Level:
-	return Level.new( # 5
+static func _create_level_06() -> Level:
+	return Level.new(
 		'1111-' + NL +
 		'-121-' + NL +
 		'-1111',
@@ -139,8 +139,8 @@ static func _create_level_05() -> Level:
 		]
 	)
 
-static func _create_level_06() -> Level:
-	return Level.new( # 6
+static func _create_level_07() -> Level:
+	return Level.new(
 		'12121' + NL +
 		'-131-' + NL +
 		'12121',
@@ -172,8 +172,8 @@ static func _create_level_06() -> Level:
 		]
 	)
 
-static func _create_level_07() -> Level:
-	return Level.new( # 7
+static func _create_level_08() -> Level:
+	return Level.new(
 		'21-131-21' + NL +
 		'1113-3111' + NL +
 		'21-131-21',
@@ -301,9 +301,9 @@ func _do_the_draw(draw : Draw, player : Player) -> Player:
 		from_area.decrease_number_of_pieces()
 	return enemy_player
 
-func execute_draw(draw : Draw, player : Player) -> Dictionary:
-	# TODO: TEMP....
-	var enemy : Player = _do_the_draw(draw, player)
+# TODO: rename into 'do_execute_draw()'.
+func actually_execute_draw(draw : Draw, player : Player) -> Dictionary:
+	var enemy : Player = _do_the_draw(draw, player) # NOTE: added in after.
 	# TODO: is this the function which also updates tiles and areas?
 	var type : Draw.DRAW_TYPE = _determine_draw_type(draw, player)
 	var repeat_effect : bool = _get_repeat_effect(draw.to)
@@ -315,6 +315,22 @@ func execute_draw(draw : Draw, player : Player) -> Dictionary:
 	match type:
 		Draw.DRAW_TYPE.CAPTURE:
 			result[Level.DRAW_INFO.DATA] = enemy # TODO: this should be the player variable, right?
+		Draw.DRAW_TYPE.MOVE_TO_EMPTY, Draw.DRAW_TYPE.MOVE_TO_END, Draw.DRAW_TYPE.OCCUPIED:
+			result[Level.DRAW_INFO.DATA] = draw
+	return result
+
+# TODO: rename into 'preexecute_draw()'.
+func execute_draw(draw : Draw, player : Player) -> Dictionary: # TODO: work in progress.
+	var type : Draw.DRAW_TYPE = _determine_draw_type(draw, player)
+	var repeat_effect : bool = _get_repeat_effect(draw.to)
+	var result : Dictionary = {
+			Level.DRAW_INFO.TYPE   : type,
+			Level.DRAW_INFO.OK     : not type == Draw.DRAW_TYPE.OCCUPIED,
+			Level.DRAW_INFO.REPEAT : repeat_effect,
+		}
+	match type:
+		Draw.DRAW_TYPE.CAPTURE:
+			result[Level.DRAW_INFO.DATA] = Player.P1
 		Draw.DRAW_TYPE.MOVE_TO_EMPTY, Draw.DRAW_TYPE.MOVE_TO_END, Draw.DRAW_TYPE.OCCUPIED:
 			result[Level.DRAW_INFO.DATA] = draw
 	return result
