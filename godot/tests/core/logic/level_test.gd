@@ -36,6 +36,7 @@ func test_execute_draw_03() -> void:
 			Level.DRAW_INFO.TYPE : Draw.DRAW_TYPE.OCCUPIED,
 			Level.DRAW_INFO.OK   : false,
 			Level.DRAW_INFO.DATA : draws[1],
+			Level.DRAW_INFO.REPEAT : true,
 		}
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
@@ -72,6 +73,7 @@ func test_execute_draw_02() -> void:
 			Level.DRAW_INFO.TYPE : Draw.DRAW_TYPE.MOVE_TO_END,
 			Level.DRAW_INFO.OK   : true,
 			Level.DRAW_INFO.DATA : draws[3],
+			Level.DRAW_INFO.REPEAT : false,
 		}
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
@@ -108,6 +110,7 @@ func test_execute_draw_01() -> void:
 			Level.DRAW_INFO.TYPE : Draw.DRAW_TYPE.MOVE_TO_EMPTY,
 			Level.DRAW_INFO.OK   : true,
 			Level.DRAW_INFO.DATA : draws[0],
+			Level.DRAW_INFO.REPEAT : true,
 		}
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
@@ -144,6 +147,7 @@ func test_execute_draw_00() -> void:
 			Level.DRAW_INFO.TYPE : Draw.DRAW_TYPE.CAPTURE,
 			Level.DRAW_INFO.OK   : true,
 			Level.DRAW_INFO.DATA : Player.P1,
+			Level.DRAW_INFO.REPEAT : false,
 		}
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
