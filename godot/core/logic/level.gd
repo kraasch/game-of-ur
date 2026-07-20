@@ -301,8 +301,7 @@ func _do_the_draw(draw : Draw, player : Player) -> Player:
 		from_area.decrease_number_of_pieces()
 	return enemy_player
 
-# TODO: rename into 'do_execute_draw()'.
-func actually_execute_draw(draw : Draw, player : Player) -> Dictionary:
+func do_execute_draw(draw : Draw, player : Player) -> Dictionary:
 	var enemy : Player = _do_the_draw(draw, player) # NOTE: added in after.
 	# TODO: is this the function which also updates tiles and areas?
 	var type : Draw.DRAW_TYPE = _determine_draw_type(draw, player)
@@ -319,8 +318,9 @@ func actually_execute_draw(draw : Draw, player : Player) -> Dictionary:
 			result[Level.DRAW_INFO.DATA] = draw
 	return result
 
-# TODO: rename into 'preexecute_draw()'.
-func execute_draw(draw : Draw, player : Player) -> Dictionary: # TODO: work in progress.
+# TODO: deprecate and remove.
+func preexecute_draw(draw : Draw, player : Player) -> Dictionary:
+	# TODO: this entire function was work in progress and never finished.
 	var type : Draw.DRAW_TYPE = _determine_draw_type(draw, player)
 	var repeat_effect : bool = _get_repeat_effect(draw.to)
 	var result : Dictionary = {

@@ -342,7 +342,6 @@ vertical_alignment = 1
 
 [node name="game_over_layer" type="CanvasLayer" parent="." unique_id=996841591]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("17_pq3sf")
 
 [node name="ColorRect" type="ColorRect" parent="game_over_layer" unique_id=2090269335]
@@ -368,9 +367,10 @@ layout_mode = 2
 
 [node name="game_over_result_label" type="RichTextLabel" parent="game_over_layer/CenterContainer/MarginContainer/VBoxContainer" unique_id=1790734308]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 275)
+custom_minimum_size = Vector2(800, 350)
 layout_mode = 2
 theme = ExtResource("14_ifle2")
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "The result goes here."
 horizontal_alignment = 1
@@ -380,7 +380,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 theme = ExtResource("14_ifle2")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 30
 text = "(interact to continue)"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -335,7 +335,7 @@ func _shift_focus(focus_shift : FOCUS_SHIFT) -> void: # TODO: refine.
 	_update_focus(next_index, Player.PLAYERS[current_pid].color)
 
 func _execute_draw(draw : Draw) -> void:
-	var info : Dictionary = level.execute_draw(draw, Player.PLAYERS[current_pid])
+	var info : Dictionary = level.do_execute_draw(draw, Player.PLAYERS[current_pid])
 	var output : Variant = info[Level.DRAW_INFO.REPEAT]
 	if output is bool:
 		var is_repeat : bool = output as bool

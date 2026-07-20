@@ -9,7 +9,7 @@ const __source: String = 'res://code+scenes/logic/level.gd'
 
 const NL : String = Global.NL
 
-func test_execute_draw_03() -> void:
+func test_preexecute_draw_03() -> void:
 	# DEFINE.
 	var player : Player = Player.P4
 	var enemy_player : Player = Player.P1
@@ -41,12 +41,12 @@ func test_execute_draw_03() -> void:
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
 	assert_array(meta).is_equal(expected_meta)
-	var actual : Dictionary = level.execute_draw(draws[1], player)
+	var actual : Dictionary = level.preexecute_draw(draws[1], player)
 	# ASSERT.
 	assert_dict(actual).is_equal(expected)
 	collect_orphan_node_details()
 
-func test_execute_draw_02() -> void:
+func test_preexecute_draw_02() -> void:
 	# DEFINE.
 	var player : Player = Player.P4
 	var enemy_player : Player = Player.P1
@@ -78,12 +78,12 @@ func test_execute_draw_02() -> void:
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
 	assert_array(meta).is_equal(expected_meta)
-	var actual : Dictionary = level.execute_draw(draws[3], player)
+	var actual : Dictionary = level.preexecute_draw(draws[3], player)
 	# ASSERT.
 	assert_dict(actual).is_equal(expected)
 	collect_orphan_node_details()
 
-func test_execute_draw_01() -> void:
+func test_preexecute_draw_01() -> void:
 	# DEFINE.
 	var player : Player = Player.P4
 	var enemy_player : Player = Player.P1
@@ -121,12 +121,12 @@ func test_execute_draw_01() -> void:
 	# EXECUTE
 	assert_array(draws).is_equal(expected_draws)
 	assert_array(meta).is_equal(expected_meta)
-	var actual : Dictionary = level.execute_draw(draws[0], player)
+	var actual : Dictionary = level.preexecute_draw(draws[0], player)
 	# ASSERT.
 	assert_dict(actual).is_equal(expected)
 	collect_orphan_node_details()
 
-func test_execute_draw_00() -> void:
+func test_preexecute_draw_00() -> void:
 	# DEFINE.
 	var player : Player = Player.P4
 	var enemy_player : Player = Player.P1
@@ -158,7 +158,7 @@ func test_execute_draw_00() -> void:
 	# EXECUTE.
 	assert_array(draws).is_equal(expected_draws)
 	assert_array(meta).is_equal(expected_meta)
-	var actual : Dictionary = level.execute_draw(draws[2], player)
+	var actual : Dictionary = level.preexecute_draw(draws[2], player)
 	# ASSERT.
 	assert_dict(actual).is_equal(expected)
 	collect_orphan_node_details()
