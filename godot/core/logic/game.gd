@@ -267,7 +267,6 @@ func _update_focus(index : int, color : Color = Color.WHITE_SMOKE) -> void:
 	_set_focus()
 
 func _remove_old_hightlights(draws : Array[Draw]) -> void:
-	print('i was here')
 	delete_arc.emit()
 	for draw : Draw in draws:
 		var to_loc : Location = draw.to
@@ -391,7 +390,7 @@ func _set_player_id(pid : int) -> void:
 	current_pid = pid
 	player_changed.emit(pid)
 
-func _set_game_state(_state : GameState) -> void:
+func _set_game_state(_state : GameState) -> void: # TODO: turn into state machine?
 	print('current state ' + STATE_STRINGS[_state])
 	state = _state
 

@@ -342,6 +342,7 @@ vertical_alignment = 1
 
 [node name="game_over_layer" type="CanvasLayer" parent="." unique_id=996841591]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("17_pq3sf")
 
 [node name="ColorRect" type="ColorRect" parent="game_over_layer" unique_id=2090269335]
