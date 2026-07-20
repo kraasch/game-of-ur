@@ -183,15 +183,11 @@ func connect_game(
 	_reset_level()
 
 func cycle_level_prev() -> void:
-	change_navigation_visibility.emit(false)
-	freeze_pass_turn.emit()
 	var number_of_levels : int = len(Level.LEVEL.values())
 	level_index = (level_index - 1 + number_of_levels) % number_of_levels
 	_reset_level()
 
 func cycle_level_next() -> void:
-	change_navigation_visibility.emit(false)
-	freeze_pass_turn.emit()
 	var number_of_levels : int = len(Level.LEVEL.values())
 	level_index = (level_index + 1 + number_of_levels) % number_of_levels
 	_reset_level()
@@ -363,6 +359,9 @@ func get_random_numbers() -> Array[bool]:
 	return result
 
 func _reset_level() -> void:
+	change_navigation_visibility.emit(false)
+	freeze_pass_turn.emit()
+	delete_arc.emit()
 	hit_repeat_tile = false
 	current_draws = []
 	state = GameState.GAME_OVER

@@ -227,7 +227,7 @@ func _make_arc(draw : Draw, color : Color) -> void:
 		piece.material_override = colored_material
 		piece.mesh = mesh
 		piece.position = (last + p) * 0.5
-		piece.look_at(p, Vector3.UP)
+		piece.look_at_from_position(p, Vector3.UP)
 		piece.rotate_object_local(Vector3.RIGHT, PI / 2.0)
 		arc.add_child(piece)
 		last = p
