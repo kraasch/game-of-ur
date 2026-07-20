@@ -53,7 +53,7 @@ var world_debug : WorldDebug
 var music_player : MusicPlayer
 var game : Game
 var arc_ref : Node3D
-#var graph : Graph # TODO: implement later.
+var graph : Graph
 
 #############
 # build-ins #
@@ -67,8 +67,8 @@ func _ready() -> void:
 	music_player.mute_was_toggled.connect(ui_layer.update_mute_button)
 	# setup game
 	_setup_game()
-	# setup graph. # TODO: implement later.
-	#_setup_graph()
+	# setup graph.
+	_setup_graph(game)
 
 func _setup_debug() -> void:
 	cam.set_is_debug(IS_DEBUG)
@@ -106,14 +106,12 @@ func _setup_game() -> void:
 			map_center_pill.global_position,
 		)
 
-#func _setup_graph() -> void: # TODO: implement later.
-	#var edges = [
-		#[Vector3(0,0,0), Vector3(2,0,0)],
-		#[Vector3(2,0,0), Vector3(2,0,2)],
-		#[Vector3(2,0,2), Vector3(0,0,1)],
-	#]
-	#graph = Graph.new(debug_container)
-	#graph.draw_graph(edges, Color.RED)
+func _setup_graph(game : Game) -> void:
+	if not game:
+		return
+	var edges = game.get_tile_graph()
+	graph = Graph.new(misc_container)
+	graph.draw_graph(edges, Color.RED)
 
 func _unhandled_input(event):
 	# NOTE: useful for debugging, this leaves the game when hitting the ESC key.

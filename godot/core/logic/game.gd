@@ -196,6 +196,9 @@ func cycle_level_next() -> void:
 # functions #
 #############
 
+func get_tile_graph() -> Array[Array]: # NOTE: actual type is Array[Array[Vector3]]
+	return level.get_tile_graph()
+
 func _deal_with_dice_roll(pips : int) -> void:
 	if pips == 0:
 		_set_game_state(GameState.WAITING_FOR_PASS)

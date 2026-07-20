@@ -9,6 +9,56 @@ const __source: String = 'res://code+scenes/logic/level.gd'
 
 const NL : String = Global.NL
 
+#func test_get_tile_graph_01() -> void:
+	## DEFINE.
+	#var map : String = 	'2113' + NL + \
+						#'1113' + NL + \
+						#'1113' + NL + \
+						#'2113'
+	#var paths : Array = [
+			#['a0,b0,c0,c1'],
+			#['a0,a1,a2'],
+		#]
+	#var expected_graph : Array = [
+		#[
+			#[Vector3(0.0, 0.0, 0.0), Vector3(1.0, 0.0, 0.0)],
+			#[Vector3(1.0, 0.0, 0.0), Vector3(2.0, 0.0, 0.0)],
+			#[Vector3(2.0, 0.0, 0.0), Vector3(2.0, 0.0, 1.0)],
+		#],
+		#[
+			#[Vector3(0.0, 0.0, 0.0), Vector3(0.0, 0.0, 1.0)],
+			#[Vector3(0.0, 0.0, 1.0), Vector3(0.0, 0.0, 2.0)],
+		#],
+	#]
+	## EXECUTE.
+	#var level : Level = auto_free(Level.new(map, {}, paths)) # TODO: make cell_types arugument optional.
+	#var actual_graph : Array = level.get_tile_graph()
+	## ASSERT.
+	#assert_that(actual_graph).is_equal(expected_graph)
+	#collect_orphan_node_details()
+
+func test_get_tile_graph_00() -> void:
+	# DEFINE.
+	var map : String = 	'211' + NL + \
+						'111' + NL + \
+						'211'
+	var paths : Array = [
+			['a0,b0,c0,c1'],
+		]
+	var expected_graph : Array = [
+		[
+			[Vector3(0.0, 0.0, 0.0), Vector3(1.0, 0.0, 0.0)],
+			[Vector3(1.0, 0.0, 0.0), Vector3(2.0, 0.0, 0.0)],
+			[Vector3(2.0, 0.0, 0.0), Vector3(2.0, 0.0, 1.0)],
+		],
+	]
+	# EXECUTE.
+	var level : Level = auto_free(Level.new(map, {}, paths)) # TODO: make cell_types arugument optional.
+	var actual_graph : Array = level.get_tile_graph()
+	# ASSERT.
+	assert_that(actual_graph).is_equal(expected_graph)
+	collect_orphan_node_details()
+
 func test_preexecute_draw_03() -> void:
 	# DEFINE.
 	var player : Player = Player.P4
