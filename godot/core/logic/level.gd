@@ -377,6 +377,23 @@ static func remove_draws_onto_same_player(draws : Array[Draw], player : Player) 
 		result.append(draw)
 	return result
 
+static func remove_draws_onto_enemy_occupied_safezone_tiles(draws : Array[Draw], player : Player) -> Array[Draw]:
+	var result : Array[Draw] = []
+	for draw : Draw in draws:
+		var to_loc : Location = draw.to
+		if to_loc is Tile:
+			var to_tile : Tile = to_loc as Tile
+			if to_tile: 
+				var enemy : Player = to_tile.occupying_player
+				var is_not_empty : bool = not enemy == null
+				var is_not_self : bool = not enemy == player
+				var occupied_by_another : bool = is_not_empty and is_not_self
+				var has_protection_effect : bool = to_tile.types.has(Tile.TILE_TYPE.SAFEZONE)
+				if occupied_by_another and has_protection_effect:
+					continue
+		result.append(draw)
+	return result
+
 static func _determine_draw_type(draw : Draw, drawing_player : Player) -> Draw.DRAW_TYPE:
 	var from : Location = draw.from
 	var to : Location = draw.to

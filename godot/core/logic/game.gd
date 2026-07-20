@@ -156,10 +156,13 @@ func on_universal_input() -> void:
 	match state:
 		GameState.WAITING_FOR_TILE_CHOICE:
 			on_player_choose_draw()
+			return
 		GameState.WAITING_FOR_DICE_ROLL:
 			on_player_dice_roll()
+			return
 		GameState.WAITING_FOR_PASS:
 			on_turn_passed()
+			return
 
 #############
 # publics   #
@@ -239,7 +242,9 @@ func _deal_with_player_choice(draw : Draw) -> void:
 func _display_choosable_tiles(pips : int, player : Player) -> void:
 	var draws : Array[Draw] = level.get_draws(pips, player)
 	draws = Level.remove_draws_onto_same_player(draws, player)
+	draws = Level.remove_draws_onto_enemy_occupied_safezone_tiles(draws, player)
 	if len(draws) == 0:
+		change_left_visibility.emit(false)
 		_set_game_state(GameState.WAITING_FOR_PASS)
 		freeze_dice.emit()
 		unfreeze_pass_turn.emit()

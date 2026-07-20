@@ -37,7 +37,7 @@ what's next
   - [X] hide next/prev arrows when there is no choice to left or right(index == 0 or index == len(draws)).
   - [X] unite button input under universal button.
   - [X] fix bug of null reference when playing oen board and then moving to another.
-  - [ ] filter out draws onto heart tiles as possible moves.
+  - [X] filter out draws onto heart tiles as possible moves.
   - [ ] arrows above currently selected draw (from from_tile to to_tile).
   - [ ] fix tests.
   - [ ] fix big bug: overlapping paths are treated like intersections, but should not (eg second traditional board, #4).
