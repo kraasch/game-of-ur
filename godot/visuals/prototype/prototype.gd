@@ -236,7 +236,7 @@ func _make_arc(draw : Draw, color : Color) -> void:
 		if i == segments - 1:
 			second_last_point = p
 	# create extra cone.
-	var diff : Vector3 = last - second_last_point
+	var diff : Vector3 = last_point - second_last_point
 	var arrow : MeshInstance3D = create_arrow_cone(diff, colored_material)
 	arrow.position = target
 	arc.add_child(arrow)
