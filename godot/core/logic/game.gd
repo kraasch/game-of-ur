@@ -22,6 +22,8 @@ signal freeze_pass_turn()
 signal unfreeze_pass_turn()
 signal reset_dice()
 signal was_dice_roll(rolls : Array[bool])
+signal draw_arc(draw : Draw, color : Color)
+signal delete_arc()
 
 #############
 # enums     #
@@ -253,17 +255,20 @@ func _display_choosable_tiles(pips : int, player : Player) -> void:
 		change_left_right_visibility.emit(false)
 	_highlight_possible_draws(draws)
 	current_draws = draws
-	_update_focus(0)
+	_update_focus(0, player.color)
 
-func _update_focus(index : int) -> void:
+func _update_focus(index : int, color : Color = Color.WHITE_SMOKE) -> void:
 	change_left_visibility.emit(not index == 0)
 	change_right_visibility.emit(not index == len(current_draws) - 1)
 	_remove_focus()
 	var new_draw : Draw = current_draws[index]
 	current_focus = new_draw
+	draw_arc.emit(new_draw, color)
 	_set_focus()
 
 func _remove_old_hightlights(draws : Array[Draw]) -> void:
+	print('i was here')
+	delete_arc.emit()
 	for draw : Draw in draws:
 		var to_loc : Location = draw.to
 		var from_loc : Location = draw.from
@@ -327,7 +332,7 @@ func _shift_focus(focus_shift : FOCUS_SHIFT) -> void: # TODO: refine.
 		0,
 		current_draws.size() - 1
 	)
-	_update_focus(next_index)
+	_update_focus(next_index, Player.PLAYERS[current_pid].color)
 
 func _execute_draw(draw : Draw) -> void:
 	var info : Dictionary = level.execute_draw(draw, Player.PLAYERS[current_pid])

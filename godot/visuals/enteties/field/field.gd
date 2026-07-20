@@ -54,6 +54,9 @@ func _process(delta):
 # publics   #
 #############
 
+func get_center() -> Vector3:
+	return Global.get_mesh_center(outer)
+
 func show_piece_of_player(player : Player) -> void:
 	piece.set_color(player.color)
 	piece.visible = true

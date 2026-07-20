@@ -52,6 +52,9 @@ func update_number(new_content_number : int) -> void:
 # publics   #
 #############
 
+func get_center() -> Vector3:
+	return Global.get_mesh_center(body)
+
 func set_color(color : Color) -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = color

@@ -52,6 +52,7 @@ var final_scene: PackedScene = preload("res://visuals/enteties/final/final.tscn"
 var world_debug : WorldDebug
 var music_player : MusicPlayer
 var game : Game
+var arc_ref : Node3D
 #var graph : Graph # TODO: implement later.
 
 #############
@@ -82,8 +83,9 @@ func _setup_debug() -> void:
 
 func _setup_game() -> void:
 	game = Game.new()
+	game.draw_arc.connect(_make_arc)
+	game.delete_arc.connect(_remove_arc)
 	game_over_layer.was_closed.connect(game.on_start_a_new_game)
-	# TODO: pull this into the game's connect_game() method.
 	game.was_dice_roll.connect(_roll_the_dice)
 	game.change_navigation_visibility.connect(ui_layer.update_navigation_ui)
 	game.change_left_right_visibility.connect(ui_layer.update_next_and_prev_ui)
@@ -184,6 +186,71 @@ func _on_confirm_button_pressed() -> void:
 #############
 # functions #
 #############
+
+func _remove_arc() -> void:
+	if arc_ref:
+		arc_ref.queue_free()
+
+func _make_arc(draw : Draw, color : Color) -> void:
+	if arc_ref:
+		_remove_arc()
+	var from_loc : Location = draw.from
+	var to_loc : Location = draw.to
+	if not Game.fast_lookup.has(from_loc) or not Game.fast_lookup.has(to_loc):
+		return
+	var colored_material : StandardMaterial3D = StandardMaterial3D.new()
+	colored_material.albedo_color = color
+	var obj_from : Node3D = Game.fast_lookup[from_loc]
+	var obj_to : Node3D = Game.fast_lookup[to_loc]
+	const height_offset : Vector3 = Vector3(0.0, 0.6, 0.0)
+	var start : Vector3 = obj_from.get_center()
+	var target : Vector3 = obj_to.get_center()
+	start += height_offset
+	target += height_offset
+	var arc : Node3D = Node3D.new()
+	arc_ref = arc
+	add_child(arc)
+	var height : float = 1.5
+	var segments : int = 130
+	var last : Vector3 = start
+	var last_point : Vector3 = Vector3()
+	var second_last_point : Vector3 = Vector3()
+	for i in range(1, segments + 1):
+		var t : float = float(i) / segments
+		var p : Vector3 = start.lerp(target, t)
+		p.y += height * 4.0 * t * (1.0 - t)
+		var piece : MeshInstance3D = MeshInstance3D.new()
+		var mesh : CylinderMesh = CylinderMesh.new()
+		mesh.top_radius = 0.03
+		mesh.bottom_radius = 0.03
+		mesh.height = last.distance_to(p)
+		piece.material_override = colored_material
+		piece.mesh = mesh
+		piece.position = (last + p) * 0.5
+		piece.look_at(p, Vector3.UP)
+		piece.rotate_object_local(Vector3.RIGHT, PI / 2.0)
+		arc.add_child(piece)
+		last = p
+		if i == segments:
+			last_point = p
+		if i == segments - 1:
+			second_last_point = p
+	# create extra cone.
+	var diff : Vector3 = last - second_last_point
+	var arrow : MeshInstance3D = create_arrow_cone(diff, colored_material)
+	arrow.position = target
+	arc.add_child(arrow)
+
+static func create_arrow_cone(direction : Vector3, colored_material : StandardMaterial3D) -> MeshInstance3D:
+	var cone : MeshInstance3D = MeshInstance3D.new()
+	var mesh : CylinderMesh = CylinderMesh.new()
+	cone.material_override = colored_material
+	mesh.top_radius = 0.0
+	mesh.bottom_radius = 0.15
+	mesh.height = 0.4
+	cone.mesh = mesh
+	cone.quaternion = Quaternion(Vector3.UP, direction.normalized())
+	return cone
 
 func _show_winner(player_id : int) -> void:
 	var message : String = 'The winner is\nplayer no. ' + str(player_id + 1)
