@@ -201,6 +201,7 @@ func _deal_with_dice_roll(pips : int) -> void:
 		_set_game_state(GameState.WAITING_FOR_PASS)
 		freeze_dice.emit()
 		unfreeze_pass_turn.emit()
+		change_navigation_visibility.emit(false)
 		return
 	_set_game_state(GameState.WAITING_FOR_TILE_CHOICE)
 	change_navigation_visibility.emit(true)
@@ -246,6 +247,7 @@ func _display_choosable_tiles(pips : int, player : Player) -> void:
 		_set_game_state(GameState.WAITING_FOR_PASS)
 		freeze_dice.emit()
 		unfreeze_pass_turn.emit()
+		change_navigation_visibility.emit(false)
 		return
 	if len(draws) == 1:
 		change_left_right_visibility.emit(false)
