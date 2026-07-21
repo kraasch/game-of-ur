@@ -397,7 +397,7 @@ func _cycle_player_next() -> void:
 
 func _set_player_id(pid : int) -> void:
 	current_pid = pid
-	player_changed.emit(pid)
+	player_changed.emit(pid, Player.PLAYERS[current_pid].color)
 
 func _set_game_state(_state : GameState) -> void: # TODO: turn into state machine?
 	print('current state ' + STATE_STRINGS[_state])

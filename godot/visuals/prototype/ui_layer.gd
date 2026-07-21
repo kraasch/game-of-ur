@@ -115,8 +115,8 @@ func _on_about_button_pressed() -> void:
 func play_button_sound():
 	button_sound.play()
 
-func update_ui_for_player(pid : int) -> void:
-	_update_gamepad_for_player(pid)
+func update_ui_for_player(pid : int, color : Color) -> void:
+	_update_gamepad_for_player(pid, color)
 
 func reset_ui_for_dice_roll() -> void:
 	for eye : TextureRect in EYES:
@@ -124,9 +124,13 @@ func reset_ui_for_dice_roll() -> void:
 	number_label.visible = false
 	number_label.text = UNKNOWN_TEXT
 
-func _update_gamepad_for_player(pid : int) -> void:
+func _update_gamepad_for_player(pid : int, color : Color) -> void:
 	if pid >= 0 and pid < len(GAMEPADS):
 		player_indicator.texture = GAMEPADS[pid]
+		if color:
+			player_indicator.modulate = color
+		else:
+			player_indicator.modulate = Color.WHITE
 
 func get_mouse(mouse: MOUSE) -> Resource:
 	match mouse:
