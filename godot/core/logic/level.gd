@@ -27,6 +27,44 @@ static func create_all_levels() -> Array[Level]:
 
 static func _create_level_01() -> Level:
 	return Level.new(
+		'2111--21' + NL +
+		'11131111' + NL +
+		'2111--21',
+		{
+			'1' : [Tile.TILE_TYPE.REGULAR],
+			'2' : [Tile.TILE_TYPE.REPEAT],
+			'3' : [
+				Tile.TILE_TYPE.REPEAT,
+				Tile.TILE_TYPE.SAFEZONE
+			],
+		},
+		[
+			['d0,c0,b0,a0,a1,b1,c1,d1,e1,f1,g1,h1,h0,g0'],
+			['d2,c2,b2,a2,a1,b1,c1,d1,e1,f1,g1,h1,h2,g2'],
+		]
+	)
+
+static func _create_level_02() -> Level:
+	return Level.new(
+		'2111--21' + NL +
+		'11131111' + NL +
+		'2111--21',
+		{
+			'1' : [Tile.TILE_TYPE.REGULAR],
+			'2' : [Tile.TILE_TYPE.REPEAT],
+			'3' : [
+				Tile.TILE_TYPE.REPEAT,
+				Tile.TILE_TYPE.SAFEZONE
+			],
+		},
+		[
+			['a0,b0,c0,d0,d1,e1,f1,g1,g0,h0,h1,h2,g2,g1,f1,e1,d1,c1,b1,a1'],
+			['a2,b2,c2,d2,d1,e1,f1,g1,g2,h2,h1,h0,g0,g1,f1,e1,d1,c1,b1,a1'],
+		]
+	)
+
+static func _create_level_03() -> Level:
+	return Level.new(
 		'1' + NL +
 		'2' + NL +
 		'3' + NL +
@@ -46,7 +84,7 @@ static func _create_level_01() -> Level:
 		],
 	)
 
-static func _create_level_02() -> Level:
+static func _create_level_04() -> Level:
 	return Level.new(
 		'131' + NL +
 		'323' + NL +
@@ -61,44 +99,6 @@ static func _create_level_02() -> Level:
 			['c0,b0,b1,b2,a2'],
 			['c2,c1,b1,a1,a0'],
 			['a2,b2,b1,b0,c0'],
-		]
-	)
-
-static func _create_level_03() -> Level:
-	return Level.new(
-		'2111--21' + NL +
-		'11131111' + NL +
-		'2111--21',
-		{
-			'1' : [Tile.TILE_TYPE.REGULAR],
-			'2' : [Tile.TILE_TYPE.REPEAT],
-			'3' : [
-				Tile.TILE_TYPE.REPEAT,
-				Tile.TILE_TYPE.SAFEZONE
-			],
-		},
-		[
-			['d0,c0,b0,a0,a1,b1,c1,d1,e1,f1,g1,h1,h0,g0'],
-			['d2,c2,b2,a2,a1,b1,c1,d1,e1,f1,g1,h1,h2,g2'],
-		]
-	)
-
-static func _create_level_04() -> Level:
-	return Level.new(
-		'2111--21' + NL +
-		'11131111' + NL +
-		'2111--21',
-		{
-			'1' : [Tile.TILE_TYPE.REGULAR],
-			'2' : [Tile.TILE_TYPE.REPEAT],
-			'3' : [
-				Tile.TILE_TYPE.REPEAT,
-				Tile.TILE_TYPE.SAFEZONE
-			],
-		},
-		[
-			['a0,b0,c0,d0,d1,e1,f1,g1,g0,h0,h1,h2,g2,g1,f1,e1,d1,c1,b1,a1'],
-			['a2,b2,c2,d2,d1,e1,f1,g1,g2,h2,h1,h0,g0,g1,f1,e1,d1,c1,b1,a1'],
 		]
 	)
 
