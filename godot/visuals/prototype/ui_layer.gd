@@ -6,6 +6,8 @@ const CURSOR_CAN_GRAB: Resource = preload("res://assets/cursors//hand_open.png")
 const CURSOR_CAN_CLICK: Resource = preload("res://assets/cursors/hand_point.png")
 const MUTED : Resource = preload("res://assets/icons/audioOff.png")
 const LOUD : Resource = preload("res://assets/icons/audioOn.png")
+const HIDE_PATHS_TEXTURE : Resource = preload("res://assets/icons/cross.png")
+const SHOW_PATHS_TEXTURE : Resource = preload("res://assets/icons/larger.png")
 const BUTTON_DISABLED : Resource = preload("res://assets/cursors/disabled.png")
 const DICE_ENABLED : Resource = preload("res://assets/icons/return.png")
 const CURSOR_HOLDING: Resource = preload("res://assets/cursors/hand_closed.png")
@@ -42,6 +44,7 @@ enum MOUSE {BEGIN_BUTTON_HOVER, END_BUTTON_HOVER}
 @onready var prev_button: TextureButton = %prev_button
 @onready var confirm_button: TextureButton = %confirm_button
 @onready var next_button: TextureButton = %next_button
+@onready var path_toggle: TextureButton = %path_toggle
 
 @onready var buttons: Array[TextureButton] = [
 	shader_button,
@@ -55,7 +58,14 @@ enum MOUSE {BEGIN_BUTTON_HOVER, END_BUTTON_HOVER}
 	prev_button,
 	confirm_button,
 	next_button,
+	path_toggle,
 ]
+
+func update_path_toggle_face(show_paths : bool) -> void:
+	if show_paths:
+		path_toggle.texture_normal = HIDE_PATHS_TEXTURE
+	else:
+		path_toggle.texture_normal = SHOW_PATHS_TEXTURE
 
 func _update_button(button : TextureButton, is_show : bool) -> void:
 	button.visible = is_show

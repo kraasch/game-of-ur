@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://k708bl43sbhs" path="res://assets/icons/multiplayer.png" id="9_pc71m"]
 [ext_resource type="Texture2D" uid="uid://kkophcr81rtq" path="res://assets/icons/arrowRight.png" id="9_rb7bs"]
 [ext_resource type="Texture2D" uid="uid://kva4tov5kf4v" path="res://assets/icons/gamepad1.png" id="10_rb7bs"]
+[ext_resource type="Texture2D" uid="uid://bapybx68fbcix" path="res://assets/icons/larger.png" id="11_a5jhi"]
 [ext_resource type="Texture2D" uid="uid://biq10athh0cc2" path="res://assets/icons/next.png" id="11_kcsdr"]
 [ext_resource type="Texture2D" uid="uid://3d460sweny05" path="res://assets/cursors/look_d.png" id="13_pq3sf"]
 [ext_resource type="Theme" uid="uid://b1l65utswjhef" path="res://visuals/menus/hello_font_theme.tres" id="14_ifle2"]
@@ -139,6 +140,11 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("9_rb7bs")
+
+[node name="path_toggle" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer2" unique_id=818389151]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("11_a5jhi")
 
 [node name="top_right_hbox" type="HBoxContainer" parent="ui_layer" unique_id=676388932]
 anchors_preset = 1
@@ -395,6 +401,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/reset_perspective_button" to="cam" method="_on_reset_perspective_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/shader_button" to="shader_layer/shader_rect" method="_on_shader_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer2/right_button" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer2/path_toggle" to="." method="_on_path_toggle_pressed"]
 [connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/pass_button" to="." method="_on_pass_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/step_button" to="." method="_on_step_button_pressed"]
 [connection signal="pressed" from="ui_layer/prev_button" to="." method="_on_prev_button_pressed"]

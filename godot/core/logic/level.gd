@@ -57,8 +57,8 @@ static func _create_level_02() -> Level:
 			'3' : [Tile.TILE_TYPE.SAFEZONE],
 		},
 		[
-			['a0,a1,b1,b2,c2'],
-			['c0,b0,b1,c1,a2'],
+			['a0,a1,b1,c1,c2'],
+			['c0,b0,b1,b2,a2'],
 			['c2,c1,b1,a1,a0'],
 			['a2,b2,b1,b0,c0'],
 		]
@@ -124,21 +124,27 @@ static func _create_level_05() -> Level:
 
 static func _create_level_06() -> Level:
 	return Level.new(
-		'1111-' + NL +
-		'-121-' + NL +
-		'-1111',
+		'1131-' + NL +
+		'-232-' + NL +
+		'-1311',
 		{
 			'1' : [Tile.TILE_TYPE.REGULAR],
 			'2' : [Tile.TILE_TYPE.REPEAT],
+			'3' : [
+				Tile.TILE_TYPE.REPEAT,
+				Tile.TILE_TYPE.SAFEZONE
+			],
 		},
 		[
 			[
 				'a0,b0,c0,d0,d1,d2,e2',
-					  'c0,c1,c2,d2',
+				   'b0,b1,b2,c2,d2',
+					  'c0,c1,c2',
 			],
 			[
 				'e2,d2,c2,b2,b1,b0,a0',
-					  'c2,c1,c0,b0',
+				   'd2,d1,d0,c0,b0',
+					  'c2,c1,c0',
 			],
 		]
 	)

@@ -55,6 +55,7 @@ var music_player : MusicPlayer
 var game : Game
 var arc_ref : Node3D
 var graph : Graph
+var show_paths : bool = false # NOTE: will be toggled by ready function.
 
 #############
 # build-ins #
@@ -66,8 +67,10 @@ func _ready() -> void:
 	# music player.
 	music_player = MusicPlayer.new(misc_container)
 	music_player.mute_was_toggled.connect(ui_layer.update_mute_button)
-	# setup game
+	# setup game.
 	_setup_game()
+	# setup ui.
+	_on_path_toggle_pressed()
 
 func _setup_debug() -> void:
 	cam.set_is_debug(IS_DEBUG)
@@ -98,7 +101,7 @@ func _setup_game() -> void:
 	game.reset_dice.connect(ui_layer.reset_ui_for_dice_roll)
 	game.winner_is.connect(_show_winner)
 	game.level_changed.connect(_update_level_label)
-	game.level_changed.connect(_setup_graph)
+	game.visualize_graph.connect(_setup_graph)
 	game.connect_game(
 			field_scene, 
 			final_scene,
@@ -106,9 +109,14 @@ func _setup_game() -> void:
 			map_center_pill.global_position,
 		)
 
-func _setup_graph(x : Variant) -> void:
+func _reset_graph_container() -> void:
 	for child : Node in graph_container.get_children():
 		child.queue_free()
+
+func _setup_graph() -> void:
+	if not show_paths:
+		return
+	_reset_graph_container()
 	var _game : Game = game
 	if not _game:
 		return
@@ -117,13 +125,13 @@ func _setup_graph(x : Variant) -> void:
 		return
 	graph = Graph.new(graph_container)
 	var paths : Array[Path] = level.paths
-	for i : int in range(len(paths)):
-		var path : Path = paths[i]
+	for i : int in range(len(level.players)):
 		var player : Player = level.players[i]
-		var edges_arr : Array = path.get_inner_graph()
+		var players_path : Path = paths[i]
+		var edges_arr : Array = players_path.get_inner_graph()
 		for edges in edges_arr:
 			var offset : Vector3 = Game.get_offset()
-			graph.draw_graph(edges, player.color, offset)
+			graph.draw_graph(edges, player.color, offset, i, len(level.players))
 
 func _unhandled_input(event):
 	# NOTE: useful for debugging, this leaves the game when hitting the ESC key.
@@ -152,6 +160,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("my_universal"):
 		if game:
 			game.on_universal_input()
+	if event.is_action_pressed("my_path_info"):
+		_on_path_toggle_pressed()
 
 #############
 # listeners #
@@ -283,3 +293,12 @@ func _roll_the_dice(eyes : Array[bool]) -> int:
 	number_label.visible = true
 	number_label.text = str(num)
 	return num
+
+func _on_path_toggle_pressed() -> void:
+	show_paths = not show_paths
+	_setup_graph()
+	if graph:
+		graph.update_show_paths(show_paths)
+	if not show_paths:
+		_reset_graph_container()
+	ui_layer.update_path_toggle_face(show_paths)

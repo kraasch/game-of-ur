@@ -24,6 +24,7 @@ signal reset_dice()
 signal was_dice_roll(rolls : Array[bool])
 signal draw_arc(draw : Draw, color : Color)
 signal delete_arc()
+signal visualize_graph()
 
 #############
 # enums     #
@@ -380,6 +381,7 @@ func _reset_level() -> void:
 	_set_game_state(GameState.WAITING_FOR_DICE_ROLL)
 	unfreeze_dice.emit()
 	level_changed.emit(level_index)
+	visualize_graph.emit()
 
 func _set_player_id_randomly(_level : Level) -> void:
 	var random_id : int = rng.randi_range(0, len(_level.players) - 1)
