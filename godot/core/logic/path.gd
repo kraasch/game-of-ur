@@ -95,9 +95,18 @@ func get_inner_graph() -> Array:
 	return result
 
 static func convert_to_vector(node_id : String) -> Vector3:
-	var x : float = node_id.unicode_at(0) - "a".unicode_at(0)
+	const DOUBLE_PATH_OFFSET : Vector3 = Vector3(0.0, -0.15, 0.0)
+	var character : String = node_id
+	var add_double_path_offset : bool = false
+	if not character == character.to_lower(): # it is a upper character
+		character = character.to_lower() # convert to lower character.
+		add_double_path_offset = true
+	var x : float = character.unicode_at(0) - "a".unicode_at(0)
 	var y : float = node_id.substr(1).to_int()
-	return Vector3(x, 0.0, y)
+	var result : Vector3 = Vector3(x, 0.0, y)
+	if add_double_path_offset:
+		result += DOUBLE_PATH_OFFSET
+	return result
 
 static func convert_to_vectors(node_id_a : String, node_id_b : String) -> Array[Vector3]:
 	var a : Vector3 = convert_to_vector(node_id_a)

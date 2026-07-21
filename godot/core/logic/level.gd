@@ -58,8 +58,8 @@ static func _create_level_02() -> Level:
 			],
 		},
 		[
-			['a0,b0,c0,d0,d1,e1,f1,g1,g0,h0,h1,h2,g2,g1,f1,e1,d1,c1,b1,a1'],
-			['a2,b2,c2,d2,d1,e1,f1,g1,g2,h2,h1,h0,g0,g1,f1,e1,d1,c1,b1,a1'],
+			['a0,b0,c0,d0,d1,e1,f1,g1,g0,h0,h1,h2,g2,G1,F1,E1,D1,C1,B1,A1'],
+			['a2,b2,c2,d2,d1,e1,f1,g1,g2,h2,h1,h0,g0,G1,F1,E1,D1,C1,B1,A1'],
 		]
 	)
 

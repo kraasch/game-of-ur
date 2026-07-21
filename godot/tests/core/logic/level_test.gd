@@ -244,7 +244,7 @@ func test_get_draws_01() -> void:
 func test_draws_00() -> void:
 	# DEFINE.
 	var player : Player = Player.P1
-	var level : Level = Level.create(Level.LEVEL.LVL3)
+	var level : Level = Level.create(Level.LEVEL.LVL1)
 	var pips : int = 6
 	var expected : Array[Draw] = [
 		Draw.new(player.start, level.get_tile_by_coords(Vector2i(1, 1))),
@@ -265,7 +265,7 @@ func test_get_piece_locations_intially_empty() -> void:
 func test_get_piece_locations() -> void:
 	# DEFINE.
 	var player : Player = Player.P1
-	var level : Level = Level.create(Level.LEVEL.LVL3)
+	var level : Level = Level.create(Level.LEVEL.LVL1)
 	var coords : Array[Vector2i] = [
 		Vector2i(0, 0),
 		Vector2i(1, 1),
@@ -287,7 +287,7 @@ func test_get_piece_locations() -> void:
 	assert_array(actual).is_equal(expected)
 	collect_orphan_node_details()
 
-func test_define_board_cells() -> void:
+func test_define_board_cells_00() -> void:
 	# DEFINE.
 	var map : String = 	'2111--21' + NL + \
 						'11131111' + NL + \
