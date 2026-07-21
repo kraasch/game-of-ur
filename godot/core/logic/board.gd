@@ -45,6 +45,18 @@ var num_cells_offsite : int = 0
 # build-ins #
 #############
 
+func _to_string() -> String:
+	var result : String = ''
+	for i : int in range(dimension.y):
+		for j : int in range(dimension.x):
+			var tile : Tile = grid[j][i]
+			if tile:
+				result += str(tile.layer)
+			else:
+				result += '-'
+		result += '\n'
+	return result
+
 func _init(_map_text : String, _cell_types : Dictionary) -> void:
 	_map_text = _map_text.to_lower()
 	grid = _parse_tiles(_map_text, _cell_types)
@@ -71,16 +83,8 @@ func get_cell_by_coords(cell_coords : Vector2i) -> Tile:
 	return tile
 
 func get_cell_by_id(cell_id : String) -> Tile:
-	var is_layer_override : bool = false
-	var layer : int = -1
-	if cell_id == cell_id.to_upper(): # NOTE: if implementing more layers, do it here.
-		# is upper case reference.
-		layer = 1
-		is_layer_override = true
 	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
-	if is_layer_override:
-		tile.layer = layer
 	return tile
 
 func set_player_by_coords(cell_coords : Vector2i, player : Player, layer : int = 0) -> void:

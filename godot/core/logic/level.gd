@@ -290,6 +290,10 @@ static func get_draws_meta(draws : Array[Draw], drawing_player : Player) -> Arra
 func _do_the_draw(draw : Draw, player : Player, draw_index : int) -> Player:
 	var players_path : Path = _get_players_path(player)
 	var new_target_layer : int = players_path.get_layer_for_index(draw_index)
+	print('++++++++++++++++++++++')
+	print('NEW LAYER IS ==> ' + str(new_target_layer))
+	print('++++++++++++++++++++++')
+	print(' A: ' + str(board))
 	var enemy_player : Player = null
 	var to_loc : Location = draw.to
 	var from_loc : Location = draw.from
@@ -311,6 +315,7 @@ func _do_the_draw(draw : Draw, player : Player, draw_index : int) -> Player:
 	elif from_loc is Area:
 		var from_area : Area = from_loc as Area
 		from_area.decrease_number_of_pieces()
+	print(' B: ' + str(board))
 	return enemy_player
 
 func do_execute_draw(draw : Draw, player : Player, draw_index : int) -> Dictionary:
@@ -397,20 +402,25 @@ func get_tile_by_id(tile_id : String) -> Tile:
 # functions #
 #############
 
-static func remove_draws_onto_same_player(draws : Array[Draw], player : Player) -> Array[Draw]:
+static func remove_draws_onto_same_player(draws : Array[Draw], player : Player) -> Array:
 	var result : Array[Draw] = []
-	for draw : Draw in draws:
+	var _remove_indexes : Array[int] = []
+	for i : int in range(len(draws)):
+		var draw : Draw = draws[i]
 		var to_loc : Location = draw.to
 		if to_loc is Tile:
 			var to_tile : Tile = to_loc as Tile
 			if not to_tile or to_tile.get_player() == player:
+				_remove_indexes.append(i)
 				continue
 		result.append(draw)
-	return result
+	return [result, _remove_indexes]
 
-static func remove_draws_onto_enemy_occupied_safezone_tiles(draws : Array[Draw], player : Player) -> Array[Draw]:
+static func remove_draws_onto_enemy_occupied_safezone_tiles(draws : Array[Draw], player : Player) -> Array:
 	var result : Array[Draw] = []
-	for draw : Draw in draws:
+	var _remove_indexes : Array[int] = []
+	for i : int in range(len(draws)):
+		var draw : Draw = draws[i]
 		var to_loc : Location = draw.to
 		if to_loc is Tile:
 			var to_tile : Tile = to_loc as Tile
@@ -421,9 +431,10 @@ static func remove_draws_onto_enemy_occupied_safezone_tiles(draws : Array[Draw],
 				var occupied_by_another : bool = is_not_empty and is_not_self
 				var has_protection_effect : bool = to_tile.types.has(Tile.TILE_TYPE.SAFEZONE)
 				if occupied_by_another and has_protection_effect:
+					_remove_indexes.append(i)
 					continue
 		result.append(draw)
-	return result
+	return [result, _remove_indexes]
 
 static func _determine_draw_type(draw : Draw, drawing_player : Player) -> Draw.DRAW_TYPE:
 	#var _from : Location = draw.from # NOTE: for the future.

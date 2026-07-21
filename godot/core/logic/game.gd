@@ -159,7 +159,10 @@ func on_input_next() -> void:
 		return
 	_shift_focus(FOCUS_SHIFT.RIGHT)
 
+var num : int = 0
 func on_universal_input() -> void:
+	num += 1
+	print('==================================== ' + str(num))
 	match state:
 		GameState.WAITING_FOR_TILE_CHOICE:
 			on_player_choose_draw()
@@ -246,10 +249,22 @@ func _deal_with_player_choice(draw : Draw, draw_index : int) -> void:
 		change_navigation_visibility.emit(false)
 		winner_is.emit(current_pid)
 
+func _remove_indexes(indexes : Array[int], player : Player) -> void:
+	var path : Path = level._get_players_path(player)
+	path.remove_indxes_from_new_layers_arr(indexes)
+	print('NEW LAYERS')
+	print(path.new_layers)
+
 func _display_choosable_tiles(pips : int, player : Player) -> void:
 	var draws : Array[Draw] = level.get_draws(pips, player)
-	draws = Level.remove_draws_onto_same_player(draws, player)
-	draws = Level.remove_draws_onto_enemy_occupied_safezone_tiles(draws, player)
+	print('NEW DRAWS')
+	print(draws)
+	var res_0 := Level.remove_draws_onto_same_player(draws, player)
+	draws = res_0[0]
+	_remove_indexes(res_0[1], player)
+	var res_1 := Level.remove_draws_onto_enemy_occupied_safezone_tiles(draws, player)
+	draws = res_1[0]
+	_remove_indexes(res_1[1], player)
 	if len(draws) == 0:
 		change_left_visibility.emit(false)
 		_set_game_state(GameState.WAITING_FOR_PASS)

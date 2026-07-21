@@ -94,6 +94,11 @@ func _init(paths : Array[String], _player : Player) -> void:
 # publics   #
 #############
 
+func remove_indxes_from_new_layers_arr(indexes : Array[int]) -> void:
+	for i : int in range(len(indexes)):
+		new_layers[i] = -1
+	new_layers = new_layers.filter(func(x): return not x == -1)
+
 func get_layer_for_index(index : int) -> int:
 	if not index >= 0 or not index < len(new_layers):
 		return 42 # TODO: use 0 or 1 here, i guess.
