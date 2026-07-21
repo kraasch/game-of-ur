@@ -84,7 +84,7 @@ func _setup_debug() -> void:
 		world_debug = WorldDebug.new(debug_container)
 		world_debug.create_debug_bounding_box()
 
-func _update_player_pid(_pid : int, color : Color) -> void:
+func _update_player_pid(_pid : int, _color : Color) -> void:
 	pid = _pid
 
 func _setup_game() -> void:
