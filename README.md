@@ -43,6 +43,7 @@ what's next
   - [X] visualize player's on-board routes with a graph.
   - [X] only allow controller 1 input for player 1, etc
   - [X] implement feature: overlapping paths are treated like intersections (on second traditional board).
+  - [ ] write tests for the logic of the second traditional board (level #2) and playtest the level.
 
 ## credits
 
