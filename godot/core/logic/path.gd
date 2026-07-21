@@ -74,6 +74,9 @@ var current_recusion_depth : int = 0
 ### Recursion error message, in case max recursion was reached.
 var recursion_error_msg : String = ''
 
+### A temporary variable with layer info.
+var new_layers : Array[int] = []
+
 #############
 # build-ins #
 #############
@@ -91,10 +94,13 @@ func _init(paths : Array[String], _player : Player) -> void:
 # publics   #
 #############
 
-# TODO: implement or remove.
-#func  get_new_layer(from_loc : Location, to_loc : Location) -> int:
-	#return 42
-	#var new_layer : int = path.get_new_layer(from_loc, to_loc)
+func get_layer_for_index(index : int) -> int:
+	print('ALL LAYERS')
+	print(new_layers)
+	if not index >= 0 or not index < len(new_layers):
+		return 42 # TODO: use 0 or 1 here, i guess.
+	var new_layer : int = new_layers[index]
+	return new_layer
 
 func get_inner_graph() -> Array:
 	var ids_arr : Array[Array] = to_node_ids_array()
@@ -186,13 +192,18 @@ func _walk(node : String, current : Array, result : Array[Array], visited : Dict
 
 func calculate_possible_draws(pips : int, node_ids : Array[String], start_has_piece : bool) -> Array[NodesDraw]:
 	var draws : Array[NodesDraw] = []
+	new_layers = []
 	var helper_dict : Dictionary[String, bool] = {}
+	print('LAYER NUMS ARE ...')
 	var add_draws = func(from_id : String, to_ids : Array[String]) -> void:
 		for to_id : String in to_ids:
 			var draw_id : String = from_id + to_id
 			if not helper_dict.has(draw_id):
 				helper_dict[draw_id] = true
 				draws.append(NodesDraw.new(from_id, to_id))
+				var is_upper : bool = to_id == to_id.to_upper()
+				var layer_num : int = 1 if is_upper else 0
+				new_layers.append(layer_num) # NOTE: this needs to be changed for +3 layers.
 	if start_has_piece:
 		var to_ids : Array[String] = _to_ids_for_from_id(NODE_ID_START, pips)
 		add_draws.call(NODE_ID_START, to_ids)

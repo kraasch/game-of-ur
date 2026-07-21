@@ -287,7 +287,13 @@ static func get_draws_meta(draws : Array[Draw], drawing_player : Player) -> Arra
 		draw_metas.append(type)
 	return draw_metas
 
-func _do_the_draw(draw : Draw, player : Player) -> Player:
+func _do_the_draw(draw : Draw, player : Player, draw_index : int) -> Player:
+	var players_path : Path = _get_players_path(player)
+	print('DRAW INDEX WAS')
+	print(draw_index)
+	var new_target_layer : int = players_path.get_layer_for_index(draw_index)
+	print('NEW TARGET LAYER')
+	print(new_target_layer)
 	var enemy_player : Player = null
 	var to_loc : Location = draw.to
 	var from_loc : Location = draw.from
@@ -299,8 +305,7 @@ func _do_the_draw(draw : Draw, player : Player) -> Player:
 			if occupying_player:
 				occupying_player.start.increase_number_of_pieces()
 				enemy_player = occupying_player
-		board.remove_player_by_id(to_tile.node_id) # NOTE: first remove player in order to reset layer.
-		board.set_player_by_id(to_tile.node_id, player, to_tile.layer)
+		board.set_player_by_id(to_tile.node_id, player, new_target_layer)
 	elif to_loc is Area:
 		var to_area : Area = to_loc as Area
 		to_area.increase_number_of_pieces()
@@ -312,8 +317,8 @@ func _do_the_draw(draw : Draw, player : Player) -> Player:
 		from_area.decrease_number_of_pieces()
 	return enemy_player
 
-func do_execute_draw(draw : Draw, player : Player) -> Dictionary:
-	var enemy : Player = _do_the_draw(draw, player) # NOTE: added in after.
+func do_execute_draw(draw : Draw, player : Player, draw_index : int) -> Dictionary:
+	var enemy : Player = _do_the_draw(draw, player, draw_index) # NOTE: added in after.
 	# TODO: is this the function which also updates tiles and areas?
 	var type : Draw.DRAW_TYPE = _determine_draw_type(draw, player)
 	var repeat_effect : bool = _get_repeat_effect(draw.to)

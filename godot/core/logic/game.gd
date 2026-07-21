@@ -105,6 +105,7 @@ var hit_repeat_tile : bool = false
 
 ### Currently focussed draw on the visual board.
 var current_focus : Draw
+var current_focus_index : int
 
 ### List of old draws to remove hightlighting fast.
 var current_draws : Array[Draw] = []
@@ -121,7 +122,7 @@ func on_player_choose_draw() -> void:
 	if not state == GameState.WAITING_FOR_TILE_CHOICE:
 		return
 	_set_game_state(GameState.RESOLVING_TURN)
-	_deal_with_player_choice(current_focus)
+	_deal_with_player_choice(current_focus, current_focus_index)
 
 func on_turn_passed() -> void:
 	if not state == GameState.WAITING_FOR_PASS:
@@ -223,8 +224,7 @@ func _deal_with_turn_passed() -> void:
 	unfreeze_dice.emit()
 	_cycle_player_next()
 
-# DEBUGGGGGGGG TODO: remove this comment.
-func _deal_with_player_choice(draw : Draw) -> void:
+func _deal_with_player_choice(draw : Draw, draw_index : int) -> void:
 	reset_dice.emit()
 	if not draw:
 		printerr('error: chosen draw was empty. not good!')
@@ -233,7 +233,7 @@ func _deal_with_player_choice(draw : Draw) -> void:
 	change_navigation_visibility.emit(false)
 	if current_draws:
 		_remove_old_hightlights(current_draws)
-	_execute_draw(draw)
+	_execute_draw(draw, draw_index)
 	_redraw_pieces()
 	if not level.someone_won():
 		if not hit_repeat_tile:
@@ -269,6 +269,7 @@ func _update_focus(index : int, color : Color = Color.WHITE_SMOKE) -> void:
 	_remove_focus()
 	var new_draw : Draw = current_draws[index]
 	current_focus = new_draw
+	current_focus_index = index
 	draw_arc.emit(new_draw, color)
 	_set_focus()
 
@@ -339,8 +340,8 @@ func _shift_focus(focus_shift : FOCUS_SHIFT) -> void: # TODO: refine.
 	)
 	_update_focus(next_index, Player.PLAYERS[current_pid].color)
 
-func _execute_draw(draw : Draw) -> void:
-	var info : Dictionary = level.do_execute_draw(draw, Player.PLAYERS[current_pid])
+func _execute_draw(draw : Draw, draw_index : int) -> void:
+	var info : Dictionary = level.do_execute_draw(draw, Player.PLAYERS[current_pid], draw_index)
 	var output : Variant = info[Level.DRAW_INFO.REPEAT]
 	if output is bool:
 		var is_repeat : bool = output as bool
