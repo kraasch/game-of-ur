@@ -66,6 +66,16 @@ fonts:
   - Diogenes
     - license:  [100% free]()
     - location: https://www.dafont.com/diogenes.font
+  - Zarathustra
+    - license:  [free & non-commercial]()
+    - location: https://www.dafont.com/zarathustra.font
+    - note:     by fereydoun23@gmail.com and mr. keyvan mahmmoudi, from the university of teheran
+    - note:     unicode, glyphs.
+  - Khosrau
+    - license:  [free & non-commercial]()
+    - location: https://www.dafont.com/khosrau.font
+    - by:       fereydoun23@gmail.com and mr. keyvan mahmmoudi, from the university of teheran
+    - note:     unicode, glyphs.
 
 music:
 

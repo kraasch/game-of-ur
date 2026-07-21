@@ -270,7 +270,6 @@ alignment = 1
 
 [node name="credits_layer" type="CanvasLayer" parent="." unique_id=1678586559]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("14_m7ynk")
 
 [node name="ColorRect" type="ColorRect" parent="credits_layer" unique_id=31481305]
@@ -315,8 +314,9 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "With the help of
 [ul bullet=*]
-[url=https://godotengine.org/license/]Godot Game Engine (MIT)[/url]
+[url=https://godotengine.org/license/]Godot Game Engine (MIT)[/url],
 [url=https://www.dafont.com/diogenes.font]Diogenes (Open Font)[/url], 
+[url=https://www.dafont.com/zarathustra.font]Zarathustra (Open Font) by Ferey Doun and Mr. Keyvan Mahmmoudi[/url]s
 and music by[br][url=https://opengameart.org/]Alexandr Zhelanov, Ted Kerr, Bijan, Stereophysics (Enrique Ceseña),[br]Obscure Music, StumpyStrust, Joth, brandon75689[/url].
 [/ul]"
 horizontal_alignment = 1
