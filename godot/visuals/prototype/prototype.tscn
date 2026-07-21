@@ -51,7 +51,10 @@ mesh = SubResource("CapsuleMesh_g1s22")
 [node name="debug_container" type="Node3D" parent="." unique_id=411497694]
 unique_name_in_owner = true
 
-[node name="misc_container" type="Node3D" parent="." unique_id=103561520]
+[node name="misc_container" type="Node3D" parent="." unique_id=2090825514]
+unique_name_in_owner = true
+
+[node name="graph_container" type="Node3D" parent="." unique_id=103561520]
 unique_name_in_owner = true
 
 [node name="environment_container" type="Node3D" parent="." unique_id=521293605]

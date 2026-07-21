@@ -26,19 +26,19 @@ func draw_graph(edges : Array, color : Color, board_offset : Vector3) -> void:
 	mi.material_override = material
 	container.add_child(mi)
 
-func _draw_arrow(mesh: ImmediateMesh, from: Vector3, to: Vector3, color: Color) -> void:
+func _draw_arrow(mesh: ImmediateMesh, from : Vector3, to : Vector3, color : Color) -> void:
 	mesh.surface_set_color(color)
 	mesh.surface_add_vertex(from)
 	mesh.surface_add_vertex(to)
-	var dir := (to - from).normalized()
+	var dir : Vector3 = (to - from).normalized()
 	# Pick an axis that's not parallel to the edge.
-	var up := Vector3.UP
+	var up : Vector3 = Vector3.UP
 	if abs(dir.dot(up)) > 0.95:
 		up = Vector3.RIGHT
-	var side := dir.cross(up).normalized()
-	var head_length := 0.25
-	var head_width := 0.12
-	var base := to - dir * head_length
+	var side : Vector3 = dir.cross(up).normalized()
+	var head_length : float = 0.25
+	var head_width : float = 0.12
+	var base : Vector3 = to - dir * head_length
 	mesh.surface_add_vertex(to)
 	mesh.surface_add_vertex(base + side * head_width)
 	mesh.surface_add_vertex(to)

@@ -25,22 +25,23 @@ const IS_DEBUG : bool = false
 # on-readys #
 #############
 
-@onready var game_over_layer: MyGameOverLayer = %game_over_layer
-@onready var game_over_result_label: RichTextLabel = %game_over_result_label
-@onready var credits_layer : CanvasLayer = %credits_layer
-@onready var ui_layer : MyUi = %ui_layer
-@onready var cam : MyCam = %cam
 @onready var environment_container : Node3D = %environment_container
 @onready var debug_container : Node3D = %debug_container
 @onready var misc_container : Node3D = %misc_container
+@onready var graph_container : Node3D = %graph_container
+@onready var game_over_layer : MyGameOverLayer = %game_over_layer
+@onready var game_over_result_label : RichTextLabel = %game_over_result_label
+@onready var credits_layer : CanvasLayer = %credits_layer
+@onready var ui_layer : MyUi = %ui_layer
+@onready var cam : MyCam = %cam
 @onready var map_center_pill : MeshInstance3D = %map_center_pill
 @onready var eye_1 : TextureRect = %eye_1
 @onready var eye_2 : TextureRect = %eye_2
 @onready var eye_3 : TextureRect = %eye_3
 @onready var eye_4 : TextureRect = %eye_4
 @onready var all_eyes : Array[TextureRect] = [eye_1, eye_2, eye_3, eye_4]
-@onready var number_label: Label = %number_label
-@onready var level_label: Label = %level_label
+@onready var number_label : Label = %number_label
+@onready var level_label : Label = %level_label
 
 #############
 # varaibles #
@@ -106,14 +107,15 @@ func _setup_game() -> void:
 		)
 
 func _setup_graph(x : Variant) -> void:
-	print('i tried')
+	for child : Node in graph_container.get_children():
+		child.queue_free()
 	var _game : Game = game
 	if not _game:
 		return
 	var level : Level = _game.level
 	if not level:
 		return
-	graph = Graph.new(misc_container)
+	graph = Graph.new(graph_container)
 	var paths : Array[Path] = level.paths
 	for i : int in range(len(paths)):
 		var path : Path = paths[i]
