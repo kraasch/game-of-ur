@@ -113,6 +113,11 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("9_m7ynk")
 
+[node name="path_toggle" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=818389151]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("11_a5jhi")
+
 [node name="reset_perspective_button" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer" unique_id=1386967657]
 unique_name_in_owner = true
 layout_mode = 2
@@ -140,11 +145,6 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("9_rb7bs")
-
-[node name="path_toggle" type="TextureButton" parent="ui_layer/top_left_hbox/VBoxContainer2" unique_id=818389151]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("11_a5jhi")
 
 [node name="top_right_hbox" type="HBoxContainer" parent="ui_layer" unique_id=676388932]
 anchors_preset = 1
@@ -398,10 +398,10 @@ vertical_alignment = 1
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/left_button" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/about_button" to="ui_layer" method="_on_about_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/path_toggle" to="." method="_on_path_toggle_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/reset_perspective_button" to="cam" method="_on_reset_perspective_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer/shader_button" to="shader_layer/shader_rect" method="_on_shader_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer2/right_button" to="." method="_on_right_button_pressed"]
-[connection signal="pressed" from="ui_layer/top_left_hbox/VBoxContainer2/path_toggle" to="." method="_on_path_toggle_pressed"]
 [connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/pass_button" to="." method="_on_pass_button_pressed"]
 [connection signal="pressed" from="ui_layer/top_right_hbox/HBoxContainer/step_button" to="." method="_on_step_button_pressed"]
 [connection signal="pressed" from="ui_layer/prev_button" to="." method="_on_prev_button_pressed"]
