@@ -290,6 +290,7 @@ static func get_draws_meta(draws : Array[Draw], drawing_player : Player) -> Arra
 func _do_the_draw(draw : Draw, player : Player) -> Player:
 	var enemy_player : Player = null
 	var to_loc : Location = draw.to
+	var from_loc : Location = draw.from
 	if to_loc is Tile:
 		var to_tile : Tile = to_loc as Tile
 		var info : Variant = board.get_cell_info_by_id(Board.CELL_INFO.PLAYER, to_tile.node_id)
@@ -298,11 +299,12 @@ func _do_the_draw(draw : Draw, player : Player) -> Player:
 			if occupying_player:
 				occupying_player.start.increase_number_of_pieces()
 				enemy_player = occupying_player
-		board.set_player_by_id(to_tile.node_id, player)
+		#var players_path : Path = _get_players_path(player)
+		#var new_layer : int = players_path.get_new_layer(from_loc, to_loc)
+		board.set_player_by_id(to_tile.node_id, player, to_tile.layer)
 	elif to_loc is Area:
 		var to_area : Area = to_loc as Area
 		to_area.increase_number_of_pieces()
-	var from_loc : Location = draw.from
 	if from_loc is Tile:
 		var from_tile : Tile = from_loc as Tile
 		board.remove_player_by_id(from_tile.node_id)
@@ -424,7 +426,7 @@ static func remove_draws_onto_enemy_occupied_safezone_tiles(draws : Array[Draw],
 	return result
 
 static func _determine_draw_type(draw : Draw, drawing_player : Player) -> Draw.DRAW_TYPE:
-	var from : Location = draw.from
+	#var _from : Location = draw.from # NOTE: for the future.
 	var to : Location = draw.to
 	if to is Area:
 		return Draw.DRAW_TYPE.MOVE_TO_END
@@ -443,7 +445,7 @@ func _convert_draws_from_nodes_to_tiles(node_draws : Array[Path.NodesDraw], play
 		var from_id : String = node_draw.from_node
 		var to_id : String = node_draw.to_node
 		var from : Location = player.start
-		var to : Location = player.end
+		var to : Location = player.end 
 		if not from_id == Path.NODE_ID_START:
 			from = board.get_cell_by_id(from_id)
 		if not to_id == Path.NODE_ID_END:

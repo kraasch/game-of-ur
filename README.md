@@ -42,7 +42,7 @@ what's next
   - [X] fix tests.
   - [X] visualize player's on-board routes with a graph.
   - [X] only allow controller 1 input for player 1, etc
-  - [ ] fix big bug: overlapping paths are treated like intersections, but should not (eg second traditional board, #4).
+  - [X] implement feature: overlapping paths are treated like intersections, but should not (eg second traditional board, #4).
 
 ## credits
 

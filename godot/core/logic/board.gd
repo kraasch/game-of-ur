@@ -71,8 +71,16 @@ func get_cell_by_coords(cell_coords : Vector2i) -> Tile:
 	return tile
 
 func get_cell_by_id(cell_id : String) -> Tile:
+	var is_layer_override : bool = false
+	var layer : int = -1
+	if cell_id == cell_id.to_upper(): # NOTE: if implementing more layers, do it here.
+		# is upper case reference.
+		layer = 1
+		is_layer_override = true
 	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
+	if is_layer_override:
+		tile.layer = layer
 	return tile
 
 func set_player_by_coords(cell_coords : Vector2i, player : Player, layer : int = 0) -> void:

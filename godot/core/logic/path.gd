@@ -21,6 +21,8 @@ class NodesDraw:
 	func _init(_from_node : String, _to_node : String) -> void:
 		from_node = _from_node
 		to_node = _to_node
+	func _to_string() -> String:
+		return 'HelperDraw(from:' + str(from_node) + ', to:' + str(to_node) + ')'
 
 #############
 # signals   #
@@ -88,6 +90,11 @@ func _init(paths : Array[String], _player : Player) -> void:
 #############
 # publics   #
 #############
+
+# TODO: implement or remove.
+#func  get_new_layer(from_loc : Location, to_loc : Location) -> int:
+	#return 42
+	#var new_layer : int = path.get_new_layer(from_loc, to_loc)
 
 func get_inner_graph() -> Array:
 	var ids_arr : Array[Array] = to_node_ids_array()
@@ -177,7 +184,6 @@ func _walk(node : String, current : Array, result : Array[Array], visited : Dict
 	for n in current:
 		visited[n] = true
 
-# TODO: XXX
 func calculate_possible_draws(pips : int, node_ids : Array[String], start_has_piece : bool) -> Array[NodesDraw]:
 	var draws : Array[NodesDraw] = []
 	var helper_dict : Dictionary[String, bool] = {}

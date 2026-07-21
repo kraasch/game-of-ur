@@ -223,6 +223,7 @@ func _deal_with_turn_passed() -> void:
 	unfreeze_dice.emit()
 	_cycle_player_next()
 
+# DEBUGGGGGGGG TODO: remove this comment.
 func _deal_with_player_choice(draw : Draw) -> void:
 	reset_dice.emit()
 	if not draw:
@@ -362,7 +363,7 @@ func _redraw_pieces() -> void: # TODO: validate.
 
 func get_random_numbers() -> Array[bool]:
 	var result : Array[bool] = []
-	for i : int in range(4):
+	for i : int in range(4): # TODO: debug.
 		var val : bool = rng.randf() > 0.5
 		result.append(val)
 	return result

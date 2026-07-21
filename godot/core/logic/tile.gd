@@ -79,6 +79,7 @@ func set_player(_player : Player, _layer : int) -> void:
 
 func remove_player() -> void:
 	player = null
+	layer = 0
 
 func get_player() -> Player:
 	return player
