@@ -209,7 +209,23 @@ func test_override_tiles_player_by_coords() -> void:
 	assert_array(actual).is_equal(expected)
 	collect_orphan_node_details()
 
-func test_override_tiles_player_by_id() -> void:
+func test_override_tiles_player_by_id_01() -> void:
+	# DEFINE.
+	var player : Player = Player.P1
+	var level : Level = Level.create(Level.LEVEL.LVL2)
+	var pips : int = 2
+	var expected : Array[Draw] = [
+		Draw.new(player.start, level.get_tile_by_id('b0')),
+		Draw.new(level.get_tile_by_id('d1'), level.get_tile_by_id('f1')),
+	]
+	# EXECUTE.
+	level.override_tiles_player_by_id('d1', player)
+	var actual : Array[Draw] = level.get_draws(pips, player)
+	# ASSERT.
+	assert_array(actual).is_equal(expected)
+	collect_orphan_node_details()
+
+func test_override_tiles_player_by_id_00() -> void:
 	# DEFINE.
 	var player : Player = Player.P4
 	var level : Level = Level.create(Level.LEVEL.LVL7)
@@ -287,7 +303,7 @@ func test_get_piece_locations() -> void:
 	assert_array(actual).is_equal(expected)
 	collect_orphan_node_details()
 
-func test_define_board_cells_00() -> void:
+func test_define_board_cells() -> void:
 	# DEFINE.
 	var map : String = 	'2111--21' + NL + \
 						'11131111' + NL + \

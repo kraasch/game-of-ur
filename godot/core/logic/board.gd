@@ -46,6 +46,7 @@ var num_cells_offsite : int = 0
 #############
 
 func _init(_map_text : String, _cell_types : Dictionary) -> void:
+	_map_text = _map_text.to_lower()
 	grid = _parse_tiles(_map_text, _cell_types)
 
 #############
@@ -70,6 +71,7 @@ func get_cell_by_coords(cell_coords : Vector2i) -> Tile:
 	return tile
 
 func get_cell_by_id(cell_id : String) -> Tile:
+	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
 	return tile
 
@@ -84,11 +86,13 @@ func remove_player_by_coords(cell_coords : Vector2i) -> void:
 		tile.occupying_player = null
 
 func set_player_by_id(cell_id : String, player : Player) -> void:
+	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
 	if tile:
 		tile.occupying_player = player
 
 func remove_player_by_id(cell_id : String) -> void:
+	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
 	if tile:
 		tile.occupying_player = null
