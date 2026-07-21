@@ -95,8 +95,6 @@ func _init(paths : Array[String], _player : Player) -> void:
 #############
 
 func get_layer_for_index(index : int) -> int:
-	print('ALL LAYERS')
-	print(new_layers)
 	if not index >= 0 or not index < len(new_layers):
 		return 42 # TODO: use 0 or 1 here, i guess.
 	var new_layer : int = new_layers[index]
@@ -194,7 +192,6 @@ func calculate_possible_draws(pips : int, node_ids : Array[String], start_has_pi
 	var draws : Array[NodesDraw] = []
 	new_layers = []
 	var helper_dict : Dictionary[String, bool] = {}
-	print('LAYER NUMS ARE ...')
 	var add_draws = func(from_id : String, to_ids : Array[String]) -> void:
 		for to_id : String in to_ids:
 			var draw_id : String = from_id + to_id

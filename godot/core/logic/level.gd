@@ -289,11 +289,7 @@ static func get_draws_meta(draws : Array[Draw], drawing_player : Player) -> Arra
 
 func _do_the_draw(draw : Draw, player : Player, draw_index : int) -> Player:
 	var players_path : Path = _get_players_path(player)
-	print('DRAW INDEX WAS')
-	print(draw_index)
 	var new_target_layer : int = players_path.get_layer_for_index(draw_index)
-	print('NEW TARGET LAYER')
-	print(new_target_layer)
 	var enemy_player : Player = null
 	var to_loc : Location = draw.to
 	var from_loc : Location = draw.from
