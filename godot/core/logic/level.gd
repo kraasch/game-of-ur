@@ -359,7 +359,7 @@ func override_tiles_player_by_id(node_id : String, player : Player, layer : int 
 	var tile : Tile = get_tile_by_id(node_id)
 	if node_id == node_id.to_upper():
 		# contains upper characters.
-		tile.layer = 1
+		layer = 1
 	tile.set_player(player, layer)
 
 func override_tiles_player_by_coords(coords : Vector2i, player : Player, layer : int = 0) -> void:
@@ -372,7 +372,6 @@ func get_draws(pips : int, player : Player) -> Array[Draw]:
 		return []
 	var players_path : Path = _get_players_path(player)
 	var players_tiles : Array[Tile] = board.get_piece_locations(player)
-	print('locations of player (' + str(player) + '):\n:' + str(players_tiles))
 	var nodes : Array[String] = _get_node_ids_from_tiles(players_tiles)
 	var start_has_piece : bool = player.start.number_of_pieces > 0
 	var node_draws : Array[Path.NodesDraw] = players_path.calculate_possible_draws(pips, nodes, start_has_piece)
@@ -455,7 +454,10 @@ func _convert_draws_from_nodes_to_tiles(node_draws : Array[Path.NodesDraw], play
 func _get_node_ids_from_tiles(tiles : Array[Tile]) -> Array[String]:
 	var node_ids : Array[String] = []
 	for tile : Tile in tiles:
-		node_ids.append(tile.node_id)
+		var current_id : String = tile.node_id
+		if tile.layer == 1: # NOTE: add more layers here, if needed.
+			current_id = current_id.to_upper()
+		node_ids.append(current_id)
 	return node_ids
 
 func _get_players_path(player : Player) -> Path:

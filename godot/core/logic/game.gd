@@ -400,7 +400,7 @@ func _set_player_id(pid : int) -> void:
 	player_changed.emit(pid, Player.PLAYERS[current_pid].color)
 
 func _set_game_state(_state : GameState) -> void: # TODO: turn into state machine?
-	print('current state ' + STATE_STRINGS[_state])
+	print('INFO: current state ' + STATE_STRINGS[_state])
 	state = _state
 
 ###########

@@ -77,7 +77,6 @@ var recursion_error_msg : String = ''
 #############
 
 func _init(paths : Array[String], _player : Player) -> void:
-	print('Creating PATHS like this: ' + str(paths))
 	player = _player
 	_create_start_and_end_edge(paths)
 	_create_edges(paths)
@@ -178,6 +177,7 @@ func _walk(node : String, current : Array, result : Array[Array], visited : Dict
 	for n in current:
 		visited[n] = true
 
+# TODO: XXX
 func calculate_possible_draws(pips : int, node_ids : Array[String], start_has_piece : bool) -> Array[NodesDraw]:
 	var draws : Array[NodesDraw] = []
 	var helper_dict : Dictionary[String, bool] = {}

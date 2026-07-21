@@ -214,12 +214,12 @@ func test_override_tiles_player_by_id_second_layer_00() -> void:
 	var player : Player = Player.P1
 	var level : Level = Level.create(Level.LEVEL.LVL2)
 	var pips : int = 2
+	level.override_tiles_player_by_id('D1', player)
 	var expected : Array[Draw] = [
 		Draw.new(player.start, level.get_tile_by_id('b0')),
 		Draw.new(level.get_tile_by_id('D1'), level.get_tile_by_id('B1')),
 	]
 	# EXECUTE.
-	level.override_tiles_player_by_id('D1', player)
 	var actual : Array[Draw] = level.get_draws(pips, player)
 	# ASSERT.
 	assert_array(actual).is_equal(expected)
