@@ -41,24 +41,29 @@ var types : Array[TILE_TYPE] = []
 ### The location each piece has within the board.
 var grid_coords : Vector2i = Vector2i(0, 0)
 
-### A tile can contain one player's piece at a time or none.
-var occupying_player : Player = null
+### A tile can be occupied by one player's piece at a time or none.
+### If occupied, the occupation can be on layer 0 (default) or higher (for different paths).
+var player : Player = null
 
-### Each logic tile has an actual 3D representation. # TODO: implement.
-#var representation : Node3D
+### Layer of tile (to represent different paths on the same tile).
+var layer : int = 0
 
 #############
 # build-ins #
 #############
 
 func _to_string() -> String:
-	return 'Tile(node_id:' + str(node_id) + ', style:' + str(style_id) + ')'
+	var p_string : String = ''
+	if player:
+		p_string = str(player.id)
+	return 'Tile(node_id:' + str(node_id) + ', player:' + str(p_string) + ', layer:' + str(layer) + ')'
 
-func _init(_grid_coords : Vector2i, _types : Array[TILE_TYPE], _style_id : String = '0') -> void:
+func _init(_grid_coords : Vector2i, _types : Array[TILE_TYPE], _style_id : String = '0', _layer : int = 0) -> void:
 	style_id = _style_id
 	grid_coords = _grid_coords
 	node_id = coords_to_id(_grid_coords.x, _grid_coords.y)
 	types = _types
+	layer = _layer
 
 #############
 # listeners #
@@ -67,6 +72,16 @@ func _init(_grid_coords : Vector2i, _types : Array[TILE_TYPE], _style_id : Strin
 #############
 # publics   #
 #############
+
+func set_player(_player : Player, _layer : int) -> void:
+	player = _player
+	layer = _layer
+
+func remove_player() -> void:
+	player = null
+
+func get_player() -> Player:
+	return player
 
 static func coords_to_id(x : int, y : int) -> String:
 	var letter : String = char('a'.unicode_at(0) + x)

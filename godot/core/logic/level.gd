@@ -355,13 +355,16 @@ func _get_repeat_effect(location : Location) -> bool:
 			repeat_effect = true
 	return repeat_effect
 
-func override_tiles_player_by_id(node_id : String, player : Player) -> void:
+func override_tiles_player_by_id(node_id : String, player : Player, layer : int = 0) -> void:
 	var tile : Tile = get_tile_by_id(node_id)
-	tile.occupying_player = player
+	if node_id == node_id.to_upper():
+		# contains upper characters.
+		tile.layer = 1
+	tile.set_player(player, layer)
 
-func override_tiles_player_by_coords(coords : Vector2i, player : Player) -> void:
+func override_tiles_player_by_coords(coords : Vector2i, player : Player, layer : int = 0) -> void:
 	var tile : Tile = get_tile_by_coords(coords)
-	tile.occupying_player = player
+	tile.set_player(player, layer)
 
 ### List all possible draws for a dice roll outcome.
 func get_draws(pips : int, player : Player) -> Array[Draw]:
@@ -369,6 +372,7 @@ func get_draws(pips : int, player : Player) -> Array[Draw]:
 		return []
 	var players_path : Path = _get_players_path(player)
 	var players_tiles : Array[Tile] = board.get_piece_locations(player)
+	print('locations of player (' + str(player) + '):\n:' + str(players_tiles))
 	var nodes : Array[String] = _get_node_ids_from_tiles(players_tiles)
 	var start_has_piece : bool = player.start.number_of_pieces > 0
 	var node_draws : Array[Path.NodesDraw] = players_path.calculate_possible_draws(pips, nodes, start_has_piece)
@@ -398,7 +402,7 @@ static func remove_draws_onto_same_player(draws : Array[Draw], player : Player) 
 		var to_loc : Location = draw.to
 		if to_loc is Tile:
 			var to_tile : Tile = to_loc as Tile
-			if not to_tile or to_tile.occupying_player == player:
+			if not to_tile or to_tile.get_player() == player:
 				continue
 		result.append(draw)
 	return result
@@ -410,7 +414,7 @@ static func remove_draws_onto_enemy_occupied_safezone_tiles(draws : Array[Draw],
 		if to_loc is Tile:
 			var to_tile : Tile = to_loc as Tile
 			if to_tile: 
-				var enemy : Player = to_tile.occupying_player
+				var enemy : Player = to_tile.get_player()
 				var is_not_empty : bool = not enemy == null
 				var is_not_self : bool = not enemy == player
 				var occupied_by_another : bool = is_not_empty and is_not_self
@@ -426,11 +430,11 @@ static func _determine_draw_type(draw : Draw, drawing_player : Player) -> Draw.D
 	if to is Area:
 		return Draw.DRAW_TYPE.MOVE_TO_END
 	var to_tile : Tile = to as Tile
-	if not to_tile.occupying_player:
+	if not to_tile.get_player():
 		return Draw.DRAW_TYPE.MOVE_TO_EMPTY
-	if to_tile.occupying_player == drawing_player:
+	if to_tile.get_player() == drawing_player:
 		return Draw.DRAW_TYPE.OCCUPIED
-	if to_tile.occupying_player in Player.PLAYERS:
+	if to_tile.get_player() in Player.PLAYERS:
 		return Draw.DRAW_TYPE.CAPTURE
 	return Draw.DRAW_TYPE.NONE
 

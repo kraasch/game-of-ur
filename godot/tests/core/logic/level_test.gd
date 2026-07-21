@@ -209,6 +209,22 @@ func test_override_tiles_player_by_coords() -> void:
 	assert_array(actual).is_equal(expected)
 	collect_orphan_node_details()
 
+func test_override_tiles_player_by_id_second_layer_00() -> void:
+	# DEFINE.
+	var player : Player = Player.P1
+	var level : Level = Level.create(Level.LEVEL.LVL2)
+	var pips : int = 2
+	var expected : Array[Draw] = [
+		Draw.new(player.start, level.get_tile_by_id('b0')),
+		Draw.new(level.get_tile_by_id('D1'), level.get_tile_by_id('B1')),
+	]
+	# EXECUTE.
+	level.override_tiles_player_by_id('D1', player)
+	var actual : Array[Draw] = level.get_draws(pips, player)
+	# ASSERT.
+	assert_array(actual).is_equal(expected)
+	collect_orphan_node_details()
+
 func test_override_tiles_player_by_id_01() -> void:
 	# DEFINE.
 	var player : Player = Player.P1
@@ -280,6 +296,7 @@ func test_get_piece_locations_intially_empty() -> void:
 
 func test_get_piece_locations() -> void:
 	# DEFINE.
+	var layer : int = 0
 	var player : Player = Player.P1
 	var level : Level = Level.create(Level.LEVEL.LVL1)
 	var coords : Array[Vector2i] = [
@@ -295,10 +312,10 @@ func test_get_piece_locations() -> void:
 	# EXECUTE and ASSERT.
 	for coord : Vector2i in coords:
 		var tile : Tile = level.get_tile_by_coords(coord)
-		assert_that(tile.occupying_player).is_null()
+		assert_that(tile.get_player()).is_null()
 	for coord : Vector2i in coords:
 		var tile : Tile = level.get_tile_by_coords(coord)
-		tile.occupying_player = player
+		tile.set_player(player, layer)
 	var actual : Array[Tile] = level.get_piece_locations(player)
 	assert_array(actual).is_equal(expected)
 	collect_orphan_node_details()

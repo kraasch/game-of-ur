@@ -62,7 +62,7 @@ func get_piece_locations(player : Player) -> Array[Tile]:
 	var locations : Array[Tile] = []
 	for key : String in tiles_dict:
 		var tile : Tile = tiles_dict[key]
-		if tile and tile.occupying_player == player:
+		if tile and tile.get_player() == player:
 			locations.append(tile)
 	return locations
 
@@ -75,27 +75,27 @@ func get_cell_by_id(cell_id : String) -> Tile:
 	var tile : Tile = tiles_dict[cell_id]
 	return tile
 
-func set_player_by_coords(cell_coords : Vector2i, player : Player) -> void:
+func set_player_by_coords(cell_coords : Vector2i, player : Player, layer : int = 0) -> void:
 	var tile : Tile = grid[cell_coords.x][cell_coords.y]
 	if tile:
-		tile.occupying_player = player
+		tile.set_player(player, layer)
 
 func remove_player_by_coords(cell_coords : Vector2i) -> void:
 	var tile : Tile = grid[cell_coords.x][cell_coords.y]
 	if tile:
-		tile.occupying_player = null
+		tile.remove_player()
 
-func set_player_by_id(cell_id : String, player : Player) -> void:
+func set_player_by_id(cell_id : String, player : Player, layer : int = 0) -> void:
 	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
 	if tile:
-		tile.occupying_player = player
+		tile.set_player(player, layer)
 
 func remove_player_by_id(cell_id : String) -> void:
 	cell_id = cell_id.to_lower()
 	var tile : Tile = tiles_dict[cell_id]
 	if tile:
-		tile.occupying_player = null
+		tile.remove_player()
 
 func get_board_info(type : BOARD_INFO) -> Variant:
 	match type:
@@ -112,7 +112,7 @@ func get_cell_info_by_coords(type : CELL_INFO, cell_coords : Vector2i) -> Varian
 		CELL_INFO.PLAYER:
 			var tile : Tile = grid[cell_coords.x][cell_coords.y]
 			if tile:
-				return tile.occupying_player
+				return tile.get_player()
 		CELL_INFO.EFFECTS:
 			var tile : Tile = grid[cell_coords.x][cell_coords.y]
 			if tile:
@@ -128,7 +128,7 @@ func get_cell_info_by_id(type : CELL_INFO, cell_id : String) -> Variant:
 		CELL_INFO.PLAYER:
 			var tile : Tile = tiles_dict[cell_id]
 			if tile:
-				return tile.occupying_player
+				return tile.get_player()
 		CELL_INFO.EFFECTS:
 			var tile : Tile = tiles_dict[cell_id]
 			if tile:

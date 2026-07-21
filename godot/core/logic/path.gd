@@ -77,6 +77,7 @@ var recursion_error_msg : String = ''
 #############
 
 func _init(paths : Array[String], _player : Player) -> void:
+	print('Creating PATHS like this: ' + str(paths))
 	player = _player
 	_create_start_and_end_edge(paths)
 	_create_edges(paths)
