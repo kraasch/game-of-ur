@@ -270,6 +270,7 @@ alignment = 1
 
 [node name="credits_layer" type="CanvasLayer" parent="." unique_id=1678586559]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("14_m7ynk")
 
 [node name="ColorRect" type="ColorRect" parent="credits_layer" unique_id=31481305]
