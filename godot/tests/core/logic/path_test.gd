@@ -48,7 +48,26 @@ func test_get_tile_graph_00() -> void:
 	assert_that(actual_graph).is_equal(expected_graph)
 	collect_orphan_node_details()
 
-func test_to_node_ids_array() -> void:
+func test_to_node_ids_array_01() -> void:
+	# DEFINE.
+	var graph : Array[String] = [
+				'a0,b0,c0,d0,d1,d2,e2',
+				   'b0,b1,b2,c2',
+					  'c0,c1,c2,d2',
+			]
+	var path : Path = Path.new(graph, Player.P1)
+	var expected_node_id_arrays : Array[Array] = [
+				['a0','b0','c0','d0','d1','d2','e2'],
+						  ['c0','c1','c2','d2'],
+					 ['b0','b1','b2','c2'],
+	]
+	# EXECUTE.
+	var actual_node_id_arrays : Array = path.to_node_ids_array()
+	# ASSERT.
+	assert_that(actual_node_id_arrays).is_equal(expected_node_id_arrays)
+	collect_orphan_node_details()
+
+func test_to_node_ids_array_00() -> void:
 	# DEFINE.
 	var graph : Array[String] = [
 				'a0,b0,c0,d0,d1,d2,e2',

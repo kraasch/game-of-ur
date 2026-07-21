@@ -127,50 +127,46 @@ func to_node_ids_array() -> Array[Array]:
 	current_recusion_depth = 0
 	recursion_error_msg = ''
 	var result: Array[Array] = []
-	var incoming := {}
+	var incoming : Dictionary = {}
 	for from in edges:
 		incoming[from] = incoming.get(from, 0)
 		for to in edges[from]:
 			incoming[to] = incoming.get(to, 0) + 1
+	var visited : Dictionary = {}
 	for node in incoming:
 		if incoming[node] == 0:
-			_walk(node, [], result, incoming, true)
-	for i : int in range(len(result)):
-		var arr : Array = result[i]
-		result[i] = arr.filter(func(item): return item != "START" and item != "END")
-	if not recursion_error_msg == '':
-		printerr('error: max recursion level was reached. exited with:' + recursion_error_msg)
-		printerr('  - edges: ' + str(edges))
+			_walk(node, [], result, visited, true)
+	for i : int in range(result.size()):
+		result[i] = result[i].filter(func(item): return item != "START" and item != "END")
 	return result
-	
-func _walk(
-	node: String,
-	current: Array,
-	result: Array[Array],
-	incoming: Dictionary,
-	is_main: bool
-) -> void:
+
+func _walk(node : String, current : Array, result : Array[Array], visited : Dictionary, is_main : bool) -> void:
 	current_recusion_depth += 1
 	if current_recusion_depth >= MAX_RECURSION_I:
 		recursion_error_msg = 'max reached'
 		return
 	current.append(node)
-	# Stop a side branch when it merges back.
-	if !is_main and incoming.get(node, 0) > 1:
+	# side branches stop when they reach an already completed node.
+	if not is_main and visited.has(node):
 		result.append(current.duplicate())
 		return
-	if !edges.has(node):
+	# main path nodes are always considered known.
+	visited[node] = true
+	if not edges.has(node):
 		result.append(current.duplicate())
 		return
-	var children: Array = edges[node]
+	var children : Array = edges[node]
 	if children.size() == 1:
-		_walk(children[0], current, result, incoming, is_main)
+		_walk(children[0], current, result, visited, is_main)
 		return
-	# Continue the current path on the first child.
-	_walk(children[0], current.duplicate(), result, incoming, is_main)
-	# Remaining children are side branches.
+	# main continuation.
+	_walk(children[0], current.duplicate(), result, visited, is_main)
+	# side branches.
 	for i in range(1, children.size()):
-		_walk(children[i], [node], result, incoming, false)
+		_walk(children[i], [node], result, visited, false)
+	# once a branch completes, its nodes are now known too.
+	for n in current:
+		visited[n] = true
 
 func calculate_possible_draws(pips : int, node_ids : Array[String], start_has_piece : bool) -> Array[NodesDraw]:
 	var draws : Array[NodesDraw] = []

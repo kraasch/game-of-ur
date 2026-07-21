@@ -138,13 +138,13 @@ static func _create_level_06() -> Level:
 		[
 			[
 				'a0,b0,c0,d0,d1,d2,e2',
-				   'b0,b1,b2,c2,d2',
-					  'c0,c1,c2',
+				   'b0,b1,b2,c2',
+					  'c0,c1,c2,d2',
 			],
 			[
 				'e2,d2,c2,b2,b1,b0,a0',
-				   'd2,d1,d0,c0,b0',
-					  'c2,c1,c0',
+				   'd2,d1,d0,c0',
+					  'c2,c1,c0,b0',
 			],
 		]
 	)
