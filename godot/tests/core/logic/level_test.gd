@@ -209,6 +209,24 @@ func test_override_tiles_player_by_coords() -> void:
 	assert_array(actual).is_equal(expected)
 	collect_orphan_node_details()
 
+func test_override_tiles_player_by_id_second_layer_01() -> void:
+	# DEFINE.
+	var player : Player = Player.P1
+	var level : Level = Level.create(Level.LEVEL.LVL2)
+	var pips : int = 4
+	level.override_tiles_player_by_id('d0', player)
+	level.override_tiles_player_by_id('G1', player)
+	var expected : Array[Draw] = [
+		Draw.new(player.start, level.get_tile_by_id('d0')),
+		Draw.new(level.get_tile_by_id('d0'), level.get_tile_by_id('g1')),
+		Draw.new(level.get_tile_by_id('G1'), level.get_tile_by_id('C1')),
+	]
+	# EXECUTE.
+	var actual : Array[Draw] = level.get_draws(pips, player)
+	# ASSERT.
+	assert_array(actual).is_equal(expected)
+	collect_orphan_node_details()
+
 func test_override_tiles_player_by_id_second_layer_00() -> void:
 	# DEFINE.
 	var player : Player = Player.P1
