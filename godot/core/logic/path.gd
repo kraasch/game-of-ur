@@ -34,6 +34,7 @@ class NodesDraw:
 # constants #
 #############
 
+const MAX_RECURSION_I : int = 1000
 const NODE_ID_START : String = 'START'
 const NODE_ID_END : String = 'END'
 const SEPARATOR : String = ','
@@ -65,6 +66,12 @@ var player : Player
 ### Number of links which were created.
 var link_counter : int = -2
 
+### Recursion depth when walking the graph.
+var current_recusion_depth : int = 0
+
+### Recursion error message, in case max recursion was reached.
+var recursion_error_msg : String = ''
+
 #############
 # build-ins #
 #############
@@ -82,25 +89,43 @@ func _init(paths : Array[String], _player : Player) -> void:
 # publics   #
 #############
 
-static func convert_to_vectors(node_id : String) -> Array[Vector3]:
-	var result : Array[Vector3] = [Vector3(), Vector3()]
-	# TODO: implement.
+func get_inner_graph() -> Array:
+	var ids_arr : Array[Array] = to_node_ids_array()
+	var result : Array = Path.get_tile_graph(ids_arr)
 	return result
 
-static func get_tile_graph(node_ids : Array[String]) -> Array:
+static func convert_to_vector(node_id : String) -> Vector3:
+	var x : float = node_id.unicode_at(0) - "a".unicode_at(0)
+	var y : float = node_id.substr(1).to_int()
+	return Vector3(x, 0.0, y)
+
+static func convert_to_vectors(node_id_a : String, node_id_b : String) -> Array[Vector3]:
+	var a : Vector3 = convert_to_vector(node_id_a)
+	var b : Vector3 = convert_to_vector(node_id_b)
+	var result : Array[Vector3] = [a, b]
+	return result
+
+# NOTE: optimally, this could be first converted to vector, then arranged into pairs.
+static func get_tile_graph(node_ids_arr : Array[Array]) -> Array:
 	var result : Array = []
-	for node_id : String in node_ids:
-		var vecs : Array[Vector3] = convert_to_vectors(node_id)
-		result.append(vecs)
+	for node_ids : Array in node_ids_arr:
+		var converted_node_ids : Array = []
+		var is_first_loop : bool = true
+		var last_node_id : String = ''
+		for node_id : String in node_ids:
+			if is_first_loop:
+				last_node_id = node_id
+				is_first_loop = false
+				continue
+			var vecs : Array[Vector3] = convert_to_vectors(last_node_id, node_id)
+			converted_node_ids.append(vecs)
+			last_node_id = node_id
+		result.append(converted_node_ids)
 	return result
-
-#func to_tree() -> Array: # TODO: remove.
-	#return [
-		#[Vector3(1.0, 0.0, 2.0), Vector3(3.0, 0.0, 3.0)],
-		#[Vector3(2.0, 0.0, 2.0), Vector3(3.0, 0.0, 3.0)],
-	#]
 
 func to_node_ids_array() -> Array[Array]:
+	current_recusion_depth = 0
+	recursion_error_msg = ''
 	var result: Array[Array] = []
 	var incoming := {}
 	for from in edges:
@@ -113,6 +138,9 @@ func to_node_ids_array() -> Array[Array]:
 	for i : int in range(len(result)):
 		var arr : Array = result[i]
 		result[i] = arr.filter(func(item): return item != "START" and item != "END")
+	if not recursion_error_msg == '':
+		printerr('error: max recursion level was reached. exited with:' + recursion_error_msg)
+		printerr('  - edges: ' + str(edges))
 	return result
 	
 func _walk(
@@ -122,6 +150,10 @@ func _walk(
 	incoming: Dictionary,
 	is_main: bool
 ) -> void:
+	current_recusion_depth += 1
+	if current_recusion_depth >= MAX_RECURSION_I:
+		recursion_error_msg = 'max reached'
+		return
 	current.append(node)
 	# Stop a side branch when it merges back.
 	if !is_main and incoming.get(node, 0) > 1:

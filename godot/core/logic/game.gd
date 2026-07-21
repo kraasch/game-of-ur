@@ -90,6 +90,9 @@ static var container : Node3D
 ### Center of map.
 static var map_center : Vector3
 
+### Calculated center of each board.
+static var board_center : Vector3 = Vector3.ZERO
+
 ### Current player's ID (player ID = PID).
 static var current_pid : int
 
@@ -370,13 +373,13 @@ func _reset_level() -> void:
 	hit_repeat_tile = false
 	current_draws = []
 	state = GameState.GAME_OVER
-	level_changed.emit(level_index)
 	level = Level.create(level_index)
 	_set_player_id_randomly(level)
 	_add_fields_and_finals()
 	_set_initial_number_of_draws(INITIAL_DRAWS)
 	_set_game_state(GameState.WAITING_FOR_DICE_ROLL)
 	unfreeze_dice.emit()
+	level_changed.emit(level_index)
 
 func _set_player_id_randomly(_level : Level) -> void:
 	var random_id : int = rng.randi_range(0, len(_level.players) - 1)
@@ -435,7 +438,11 @@ static func _clean_tiles() -> void:
 		node.queue_free()
 
 static func _get_centering_offset(board_dim: Vector3) -> Vector3:
-	var board_center : Vector3 = Vector3(board_dim.x * 0.5, 0, board_dim.z * 0.5)
+	var _board_center : Vector3 = Vector3(board_dim.x * 0.5, 0, board_dim.z * 0.5)
+	board_center = _board_center
+	return get_offset()
+
+static func get_offset() -> Vector3:
 	return map_center - board_center 
 
 static func _load_tiles() -> void:

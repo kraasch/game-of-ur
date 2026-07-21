@@ -7,6 +7,47 @@ extends GdUnitTestSuite
 # TestSuite generated from
 const __source: String = 'res://code+scenes/logic/path.gd'
 
+func test_get_inner_graph_00() -> void:
+	# DEFINE.
+	var graph : Array[String] = [
+				'a0,b0,c0',
+				'a0,a1,b1',
+			]
+	var path : Path = Path.new(graph, Player.P1)
+	var expected_graph : Array = [
+		[
+			[Vector3(0.0, 0.0, 0.0), Vector3(1.0, 0.0, 0.0)],
+			[Vector3(1.0, 0.0, 0.0), Vector3(2.0, 0.0, 0.0)],
+		],
+		[
+			[Vector3(0.0, 0.0, 0.0), Vector3(0.0, 0.0, 1.0)],
+			[Vector3(0.0, 0.0, 1.0), Vector3(1.0, 0.0, 1.0)],
+		],
+	]
+	# EXECUTE.
+	var actual_graph : Array = path.get_inner_graph()
+	# ASSERT.
+	assert_that(actual_graph).is_equal(expected_graph)
+	collect_orphan_node_details()
+
+func test_get_tile_graph_00() -> void:
+	# DEFINE.
+	var paths : Array[Array] = [
+			['a0','b0','c0','c1'],
+		]
+	var expected_graph : Array = [
+		[
+			[Vector3(0.0, 0.0, 0.0), Vector3(1.0, 0.0, 0.0)],
+			[Vector3(1.0, 0.0, 0.0), Vector3(2.0, 0.0, 0.0)],
+			[Vector3(2.0, 0.0, 0.0), Vector3(2.0, 0.0, 1.0)],
+		],
+	]
+	# EXECUTE.
+	var actual_graph : Array = Path.get_tile_graph(paths)
+	# ASSERT.
+	assert_that(actual_graph).is_equal(expected_graph)
+	collect_orphan_node_details()
+
 func test_to_node_ids_array() -> void:
 	# DEFINE.
 	var graph : Array[String] = [
@@ -22,24 +63,6 @@ func test_to_node_ids_array() -> void:
 	var actual_node_id_arrays : Array = path.to_node_ids_array()
 	# ASSERT.
 	assert_that(actual_node_id_arrays).is_equal(expected_node_id_arrays)
-	collect_orphan_node_details()
-
-func test_get_tile_graph_00() -> void:
-	# DEFINE.
-	var paths : Array = [
-			['a0','b0','c0','c1'],
-		]
-	var expected_graph : Array = [
-		[
-			[Vector3(0.0, 0.0, 0.0), Vector3(1.0, 0.0, 0.0)],
-			[Vector3(1.0, 0.0, 0.0), Vector3(2.0, 0.0, 0.0)],
-			[Vector3(2.0, 0.0, 0.0), Vector3(2.0, 0.0, 1.0)],
-		],
-	]
-	# EXECUTE.
-	var actual_graph : Array = Path.get_tile_graph(paths)
-	# ASSERT.
-	assert_that(actual_graph).is_equal(expected_graph)
 	collect_orphan_node_details()
 
 func test_calculate_possible_draws_from_start_to_end_00() -> void:

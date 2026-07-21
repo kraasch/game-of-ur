@@ -6,18 +6,21 @@ var container : Node3D
 func _init(_container : Node3D) -> void:
 	container = _container
 
-func draw_graph(edges: Array, color: Color) -> void:
+func draw_graph(edges : Array, color : Color, board_offset : Vector3) -> void:
+	const Y_OFFSET : Vector3 = Vector3(0, 0.5, 0)
+	const CELL_OFFSET : Vector3 = Vector3(0.5, 0.0, 0.5)
+	var offset : Vector3 = board_offset + CELL_OFFSET + Y_OFFSET 
 	# edges: Array of [Vector3, Vector3]
-	var mesh := ImmediateMesh.new()
+	var mesh : ImmediateMesh = ImmediateMesh.new()
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 	for edge in edges:
-		var from: Vector3 = edge[0]
-		var to: Vector3 = edge[1]
+		var from: Vector3 = edge[0] + offset
+		var to: Vector3 = edge[1] + offset
 		_draw_arrow(mesh, from, to, color)
 	mesh.surface_end()
-	var mi := MeshInstance3D.new()
+	var mi : MeshInstance3D = MeshInstance3D.new()
 	mi.mesh = mesh
-	var material := ORMMaterial3D.new()
+	var material : ORMMaterial3D = ORMMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = color
 	mi.material_override = material

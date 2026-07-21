@@ -67,8 +67,6 @@ func _ready() -> void:
 	music_player.mute_was_toggled.connect(ui_layer.update_mute_button)
 	# setup game
 	_setup_game()
-	# setup graph.
-	_setup_graph(game)
 
 func _setup_debug() -> void:
 	cam.set_is_debug(IS_DEBUG)
@@ -99,6 +97,7 @@ func _setup_game() -> void:
 	game.reset_dice.connect(ui_layer.reset_ui_for_dice_roll)
 	game.winner_is.connect(_show_winner)
 	game.level_changed.connect(_update_level_label)
+	game.level_changed.connect(_setup_graph)
 	game.connect_game(
 			field_scene, 
 			final_scene,
@@ -106,20 +105,23 @@ func _setup_game() -> void:
 			map_center_pill.global_position,
 		)
 
-func _setup_graph(game : Game) -> void:
-	if not game:
+func _setup_graph(x : Variant) -> void:
+	print('i tried')
+	var _game : Game = game
+	if not _game:
 		return
-	var level : Level = game.level
+	var level : Level = _game.level
 	if not level:
 		return
 	graph = Graph.new(misc_container)
 	var paths : Array[Path] = level.paths
 	for i : int in range(len(paths)):
 		var path : Path = paths[i]
-		#var player : Player = level.players[i]
-		for node_ids : Array[String] in path.to_node_ids_array():
-			var edges : Array = Path.get_tile_graph(node_ids)
-			graph.draw_graph(edges, Color.RED) # TODO: player.color
+		var player : Player = level.players[i]
+		var edges_arr : Array = path.get_inner_graph()
+		for edges in edges_arr:
+			var offset : Vector3 = Game.get_offset()
+			graph.draw_graph(edges, player.color, offset)
 
 func _unhandled_input(event):
 	# NOTE: useful for debugging, this leaves the game when hitting the ESC key.
