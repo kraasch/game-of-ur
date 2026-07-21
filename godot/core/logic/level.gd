@@ -290,10 +290,6 @@ static func get_draws_meta(draws : Array[Draw], drawing_player : Player) -> Arra
 func _do_the_draw(draw : Draw, player : Player, draw_index : int) -> Player:
 	var players_path : Path = _get_players_path(player)
 	var new_target_layer : int = players_path.get_layer_for_index(draw_index)
-	print('++++++++++++++++++++++')
-	print('NEW LAYER IS ==> ' + str(new_target_layer))
-	print('++++++++++++++++++++++')
-	print(' A: ' + str(board))
 	var enemy_player : Player = null
 	var to_loc : Location = draw.to
 	var from_loc : Location = draw.from
@@ -315,7 +311,6 @@ func _do_the_draw(draw : Draw, player : Player, draw_index : int) -> Player:
 	elif from_loc is Area:
 		var from_area : Area = from_loc as Area
 		from_area.decrease_number_of_pieces()
-	print(' B: ' + str(board))
 	return enemy_player
 
 func do_execute_draw(draw : Draw, player : Player, draw_index : int) -> Dictionary:
