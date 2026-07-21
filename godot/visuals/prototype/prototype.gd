@@ -56,6 +56,7 @@ var game : Game
 var arc_ref : Node3D
 var graph : Graph
 var show_paths : bool = false # NOTE: will be toggled by ready function.
+var pid : int = -1
 
 #############
 # build-ins #
@@ -83,6 +84,9 @@ func _setup_debug() -> void:
 		world_debug = WorldDebug.new(debug_container)
 		world_debug.create_debug_bounding_box()
 
+func _update_player_pid(_pid : int, color : Color) -> void:
+	pid = _pid
+
 func _setup_game() -> void:
 	game = Game.new()
 	game.draw_arc.connect(_make_arc)
@@ -98,6 +102,7 @@ func _setup_game() -> void:
 	game.freeze_pass_turn.connect(ui_layer.disable_pass)
 	game.unfreeze_pass_turn.connect(ui_layer.enable_pass)
 	game.player_changed.connect(ui_layer.update_ui_for_player)
+	game.player_changed.connect(_update_player_pid)
 	game.reset_dice.connect(ui_layer.reset_ui_for_dice_roll)
 	game.winner_is.connect(_show_winner)
 	game.level_changed.connect(_update_level_label)
@@ -134,6 +139,11 @@ func _setup_graph() -> void:
 			graph.draw_graph(edges, player.color, offset, i, len(level.players))
 
 func _unhandled_input(event):
+	# filter out inputs from controllers that do not belong to the current player.
+	if event is InputEventJoypadButton and event.pressed and not pid == -1:
+		var device_no : int = event.device
+		if not device_no == pid: # ignore any input not belonging to the current player.
+			return
 	# NOTE: useful for debugging, this leaves the game when hitting the ESC key.
 	if event.is_action_pressed("ui_cancel"):
 		if OS.has_feature("editor"):
