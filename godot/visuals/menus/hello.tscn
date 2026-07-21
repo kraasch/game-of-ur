@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbvhetlt812si" path="res://visuals/menus/hello.gd" id="1_36lll"]
 [ext_resource type="Theme" uid="uid://b1l65utswjhef" path="res://visuals/menus/hello_font_theme.tres" id="2_36lll"]
+[ext_resource type="PackedScene" uid="uid://cnpxa11wnfldn" path="res://visuals/menus/rune.tscn" id="2_mamsi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vi6p"]
 border_width_left = 1
@@ -74,3 +75,287 @@ theme_override_font_sizes/normal_font_size = 30
 text = "(interact to start game)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="rune_container" type="Control" parent="." unique_id=201891150]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="rune" parent="rune_container" unique_id=563769579 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 70.0
+offset_top = 49.0
+offset_right = 120.0
+offset_bottom = 99.0
+grow_horizontal = 2
+
+[node name="rune2" parent="rune_container" unique_id=875352471 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 119.0
+offset_top = 129.0
+offset_right = 169.0
+offset_bottom = 179.0
+grow_horizontal = 2
+
+[node name="rune28" parent="rune_container" unique_id=2143026328 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 29.0
+offset_top = 175.0
+offset_right = 79.0
+offset_bottom = 225.0
+grow_horizontal = 2
+
+[node name="rune3" parent="rune_container" unique_id=1227455294 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 102.0
+offset_top = 233.0
+offset_right = 152.0
+offset_bottom = 283.0
+grow_horizontal = 2
+
+[node name="rune25" parent="rune_container" unique_id=1840259333 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 102.0
+offset_top = 233.0
+offset_right = 152.0
+offset_bottom = 283.0
+grow_horizontal = 2
+
+[node name="rune4" parent="rune_container" unique_id=1837742299 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 63.0
+offset_top = 369.0
+offset_right = 113.0
+offset_bottom = 419.0
+grow_horizontal = 2
+
+[node name="rune5" parent="rune_container" unique_id=2105948465 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 127.0
+offset_top = 449.0
+offset_right = 177.0
+offset_bottom = 499.0
+grow_horizontal = 2
+
+[node name="rune6" parent="rune_container" unique_id=683253426 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 53.0
+offset_top = 538.0
+offset_right = 103.0
+offset_bottom = 588.0
+grow_horizontal = 2
+
+[node name="rune7" parent="rune_container" unique_id=1483677657 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 215.0
+offset_top = 576.0
+offset_right = 265.0
+offset_bottom = 626.0
+grow_horizontal = 2
+
+[node name="rune8" parent="rune_container" unique_id=1796785207 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 231.0
+offset_top = 177.0
+offset_right = 281.0
+offset_bottom = 227.0
+grow_horizontal = 2
+
+[node name="rune9" parent="rune_container" unique_id=1771249924 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 210.0
+offset_top = 28.0
+offset_right = 260.0
+offset_bottom = 78.0
+grow_horizontal = 2
+
+[node name="rune10" parent="rune_container" unique_id=2072143318 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 330.0
+offset_top = 76.0
+offset_right = 380.0
+offset_bottom = 126.0
+grow_horizontal = 2
+
+[node name="rune11" parent="rune_container" unique_id=1154482487 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 472.0
+offset_top = 33.0
+offset_right = 522.0
+offset_bottom = 83.0
+grow_horizontal = 2
+
+[node name="rune12" parent="rune_container" unique_id=881571160 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 773.0
+offset_top = 51.0
+offset_right = 823.0
+offset_bottom = 101.0
+grow_horizontal = 2
+
+[node name="rune13" parent="rune_container" unique_id=740371535 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 909.0
+offset_top = 109.0
+offset_right = 959.0
+offset_bottom = 159.0
+grow_horizontal = 2
+
+[node name="rune14" parent="rune_container" unique_id=1338526338 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 998.0
+offset_top = 24.0
+offset_right = 1048.0
+offset_bottom = 74.0
+grow_horizontal = 2
+
+[node name="rune15" parent="rune_container" unique_id=463998058 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1156.0
+offset_top = 35.0
+offset_right = 1206.0
+offset_bottom = 85.0
+grow_horizontal = 2
+
+[node name="rune16" parent="rune_container" unique_id=1490620035 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1071.0
+offset_top = 164.0
+offset_right = 1121.0
+offset_bottom = 214.0
+grow_horizontal = 2
+
+[node name="rune17" parent="rune_container" unique_id=2046982765 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1193.0
+offset_top = 261.0
+offset_right = 1243.0
+offset_bottom = 311.0
+grow_horizontal = 2
+
+[node name="rune26" parent="rune_container" unique_id=791361516 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1214.0
+offset_top = 93.0
+offset_right = 1264.0
+offset_bottom = 143.0
+grow_horizontal = 2
+
+[node name="rune18" parent="rune_container" unique_id=719872325 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1124.0
+offset_top = 442.0
+offset_right = 1174.0
+offset_bottom = 492.0
+grow_horizontal = 2
+
+[node name="rune24" parent="rune_container" unique_id=966092566 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1218.0
+offset_top = 461.0
+offset_right = 1268.0
+offset_bottom = 511.0
+grow_horizontal = 2
+
+[node name="rune19" parent="rune_container" unique_id=1574923778 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1088.0
+offset_top = 628.0
+offset_right = 1138.0
+offset_bottom = 678.0
+grow_horizontal = 2
+
+[node name="rune27" parent="rune_container" unique_id=543296044 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1202.0
+offset_top = 564.0
+offset_right = 1252.0
+offset_bottom = 614.0
+grow_horizontal = 2
+
+[node name="rune20" parent="rune_container" unique_id=508851653 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1017.0
+offset_top = 570.0
+offset_right = 1067.0
+offset_bottom = 620.0
+grow_horizontal = 2
+
+[node name="rune21" parent="rune_container" unique_id=255879617 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 911.0
+offset_top = 636.0
+offset_right = 961.0
+offset_bottom = 686.0
+grow_horizontal = 2
+
+[node name="rune22" parent="rune_container" unique_id=388570509 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 359.0
+offset_top = 633.0
+offset_right = 409.0
+offset_bottom = 683.0
+grow_horizontal = 2
+
+[node name="rune23" parent="rune_container" unique_id=1097411401 instance=ExtResource("2_mamsi")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 100.0
+offset_top = 631.0
+offset_right = 150.0
+offset_bottom = 681.0
+grow_horizontal = 2
