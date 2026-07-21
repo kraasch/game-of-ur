@@ -299,8 +299,7 @@ func _do_the_draw(draw : Draw, player : Player) -> Player:
 			if occupying_player:
 				occupying_player.start.increase_number_of_pieces()
 				enemy_player = occupying_player
-		#var players_path : Path = _get_players_path(player)
-		#var new_layer : int = players_path.get_new_layer(from_loc, to_loc)
+		board.remove_player_by_id(to_tile.node_id) # NOTE: first remove player in order to reset layer.
 		board.set_player_by_id(to_tile.node_id, player, to_tile.layer)
 	elif to_loc is Area:
 		var to_area : Area = to_loc as Area
