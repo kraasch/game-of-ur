@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="game-of-ur"
+config/version="v1.0.0-20260722-1058-19fc4d56-dirty"
 run/main_scene="uid://cnfj53r5yyu0k"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+BuildOverlay="*uid://d35q8d4thd8c0"
 
 [display]
 

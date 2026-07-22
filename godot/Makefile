@@ -1,9 +1,11 @@
 
 build:
+	bash ./pre-build.sh
 	make build_web
 	make upload_web
 
 build_all:
+	bash ./pre-build.sh
 	make build_web
 	make build_lin
 	make build_win

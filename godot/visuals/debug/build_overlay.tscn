@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d35q8d4thd8c0"]
+
+[ext_resource type="PackedScene" uid="uid://he7xeu4ixv76" path="res://visuals/debug/version_label.tscn" id="1_yfwsp"]
+
+[node name="build_overlay" type="CanvasLayer" unique_id=695094144]
+
+[node name="version_label" parent="." unique_id=1760590844 instance=ExtResource("1_yfwsp")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -375.0
+offset_top = -35.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 2
