@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="game-of-ur"
-config/version="v1.0.0-20260722-1729-a26f0001-dirty"
+config/version="v1.0.0-20260722-1730-40560f03-dirty"
 run/main_scene="uid://cnfj53r5yyu0k"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
