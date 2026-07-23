@@ -95,13 +95,18 @@ func _init(paths : Array[String], _player : Player) -> void:
 #############
 
 func remove_indxes_from_new_layers_arr(indexes : Array[int]) -> void:
-	for i : int in range(len(indexes)):
-		new_layers[i] = -1
+	# Mark the ACTUAL removed draw positions, not the first len(indexes) entries.
+	# `indexes` are positions into the current draws array (and thus into new_layers,
+	# which is kept parallel to it). Using `i` here instead of `indexes[i]` corrupted
+	# the layer/draw alignment and mis-assigned layers (only visible on layered levels).
+	for index : int in indexes:
+		if index >= 0 and index < len(new_layers):
+			new_layers[index] = -1
 	new_layers = new_layers.filter(func(x): return not x == -1)
 
 func get_layer_for_index(index : int) -> int:
 	if not index >= 0 or not index < len(new_layers):
-		return 42 # TODO: use 0 or 1 here, i guess.
+		return 0 # Safe fallback to the base layer if ever out of sync.
 	var new_layer : int = new_layers[index]
 	return new_layer
 
