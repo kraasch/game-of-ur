@@ -24,9 +24,71 @@ demo:
   </tr>
 </table>
 
-known bugs:
+## creating custom levels
 
-  - highlighting pieces to draw does reset properly when switching to next piece to draw.
+levels are created in code using the `Level.new()` constructor:
+
+```gdscript
+Level.new(
+    layout,
+    tile_definitions,
+    player_paths
+)
+```
+
+### 1. board layout
+
+the first argument is a multiline string describing the board. each character represents a tile, while `-` marks an empty space.
+
+```text
+1131-
+-232-
+-1311
+```
+
+### 2. tile definitions
+
+The second argument maps the characters used in the layout to one or more tile effects.
+
+```gdscript
+{
+    "1": [Tile.TILE_TYPE.REGULAR],
+    "2": [Tile.TILE_TYPE.REPEAT],
+    "3": [
+        Tile.TILE_TYPE.REPEAT,
+        Tile.TILE_TYPE.SAFEZONE
+    ]
+}
+```
+
+a tile may have **zero, one or multiple** effects.
+
+### 3. player paths
+
+the final argument defines the movement paths for each player.
+
+```gdscript
+[
+    [
+        "a0,b0,c0,d0,d1,d2,e2",
+        "b0,b1,b2,c2",
+        "c0,c1,c2,d2",
+    ],
+    [
+        "e2,d2,c2,b2,b1,b0,a0",
+        "d2,d1,d0,c0",
+        "c2,c1,c0,b0",
+    ],
+]
+```
+
+  - the outer array contains one entry per player (in numeric order: p1, p2, etc).
+  - the **first** path is the player's main route.
+  - any additional paths are branches that connect to the main path.
+  - tiles are referenced by their board coordinates (for example `a0` or `d2`).
+  - paths can overlap by using capital letters (for example `C0` or `A0`).
+
+# tasks
 
 what's next
 
@@ -65,11 +127,12 @@ fonts:
 
   - Diogenes
     - license:  [100% free]()
+    - by:       Apostrophic Labs
     - location: https://www.dafont.com/diogenes.font
   - Zarathustra
     - license:  [free & non-commercial]()
     - location: https://www.dafont.com/zarathustra.font
-    - note:     by fereydoun23@gmail.com and mr. keyvan mahmmoudi, from the university of teheran
+    - by:       fereydoun23@gmail.com and mr. keyvan mahmmoudi, from the university of teheran
     - note:     unicode, glyphs.
   - Khosrau
     - license:  [free & non-commercial]()
