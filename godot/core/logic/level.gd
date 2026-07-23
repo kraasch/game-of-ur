@@ -9,13 +9,13 @@ class_name Level
 # statics   #
 #############
 
-enum LEVEL {LVL1, 
-#LVL2, 
+enum LEVEL {LVL1,
+LVL2,
 LVL3, LVL4, LVL5, LVL6, LVL7, LVL8}
 
 static var level_creators : Array[Callable] = [
-	_create_level_01, 
-	#_create_level_02, 
+	_create_level_01,
+	_create_level_02,
 	_create_level_03, _create_level_04,
 	_create_level_05, _create_level_06, _create_level_07, _create_level_08,
 ]
@@ -48,24 +48,24 @@ static func _create_level_01() -> Level:
 		]
 	)
 
-#static func _create_level_02() -> Level:
-	#return Level.new(
-		#'2111--21' + NL +
-		#'11131111' + NL +
-		#'2111--21',
-		#{
-			#'1' : [Tile.TILE_TYPE.REGULAR],
-			#'2' : [Tile.TILE_TYPE.REPEAT],
-			#'3' : [
-				#Tile.TILE_TYPE.REPEAT,
-				#Tile.TILE_TYPE.SAFEZONE
-			#],
-		#},
-		#[
-			#['a0,b0,c0,d0,d1,e1,f1,g1,g0,h0,h1,h2,g2,G1,F1,E1,D1,C1,B1,A1'],
-			#['a2,b2,c2,d2,d1,e1,f1,g1,g2,h2,h1,h0,g0,G1,F1,E1,D1,C1,B1,A1'],
-		#]
-	#)
+static func _create_level_02() -> Level:
+	return Level.new(
+		'2111--21' + NL +
+		'11131111' + NL +
+		'2111--21',
+		{
+			'1' : [Tile.TILE_TYPE.REGULAR],
+			'2' : [Tile.TILE_TYPE.REPEAT],
+			'3' : [
+				Tile.TILE_TYPE.REPEAT,
+				Tile.TILE_TYPE.SAFEZONE
+			],
+		},
+		[
+			['a0,b0,c0,d0,d1,e1,f1,g1,g0,h0,h1,h2,g2,G1,F1,E1,D1,C1,B1,A1'],
+			['a2,b2,c2,d2,d1,e1,f1,g1,g2,h2,h1,h0,g0,G1,F1,E1,D1,C1,B1,A1'],
+		]
+	)
 
 static func _create_level_03() -> Level:
 	return Level.new(
