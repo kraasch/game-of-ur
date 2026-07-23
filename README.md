@@ -20,7 +20,7 @@ demo:
   </tr>
   <tr>
     <td><img src="./demo/image_6.png" width="400"></td>
-    <td><img src="./demo/image_4.png" width="400"></td>
+    <td><img src="./demo/image_8.png" width="400"></td>
   </tr>
 </table>
 
@@ -43,7 +43,7 @@ what's next
   - [X] visualize player's on-board routes with a graph.
   - [X] only allow controller 1 input for player 1, etc
   - [X] implement feature: overlapping paths are treated like intersections (on second traditional board).
-  - [ ] write tests for the logic of the second traditional board (level #2) and playtest the level.
+  - [X] make some more levels.
 
 ## credits
 
