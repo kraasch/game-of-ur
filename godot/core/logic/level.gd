@@ -9,11 +9,12 @@ class_name Level
 # statics   #
 #############
 
-enum LEVEL {LVL1, LVL2, LVL3, LVL4, LVL5, LVL6, LVL7, LVL8}
+enum LEVEL {LVL1, LVL2, LVL3, LVL4, LVL5, LVL6, LVL7, LVL8, LVL9, LVL10}
 
 static var level_creators : Array[Callable] = [
 	_create_level_01, _create_level_02, _create_level_03, _create_level_04,
 	_create_level_05, _create_level_06, _create_level_07, _create_level_08,
+	_create_level_09, _create_level_10,
 ]
 
 static func create(level : LEVEL) -> Level:
@@ -203,6 +204,94 @@ static func _create_level_08() -> Level:
 			[
 				'b2,a2,a1,b1,c1,d1,d2,e2,f2,f1,g1,h1,i1,i2,h2',
 							   'd1,d0,e0,f0,f1,g1'
+			],
+		]
+	)
+
+static func _create_level_09() -> Level:
+	return Level.new(
+		'2--------' + NL +
+		'1---1----' + NL +
+		'1-21312--' + NL +
+		'1-1-1-1--' + NL +
+		'113131311' + NL +
+		'--1-1-1-1' + NL +
+		'--21312-1' + NL +
+		'----1---1' + NL +
+		'--------2',
+		{
+			'1' : [Tile.TILE_TYPE.REGULAR],
+			'2' : [Tile.TILE_TYPE.REPEAT],
+			'3' : [
+				Tile.TILE_TYPE.REPEAT,
+				Tile.TILE_TYPE.SAFEZONE
+			],
+		},
+		[
+			[
+				'a0,a1,a2,a3,a4,b4,c4,c5,c6,d6,e6,e7,E6,D6,C6,C5,C4,B4,A4,A3,A2,A1,A0',
+								  'c4,d4,e4,e5,e6',
+										'e4,f4,g4,g5,g6,f6,e6',
+								  'E6,E5,E4,D4,C4',
+										'E6,F6,G6,G5,G4,F4,E4',
+			],
+			[
+				'i8,i7,i6,i5,i4,h4,g4,g3,g2,f2,e2,e1,E2,F2,G2,G3,G4,H4,I4,I5,I6,I7,I8',
+								  'g4,f4,e4,e3,e2',
+										'e4,d4,c4,c3,c2,d2,e2',
+								  'E2,E3,E4,F4,G4',
+										'E2,D2,C2,C3,C4,D4,E4',
+			],
+		]
+	)
+
+static func _create_level_10() -> Level:
+	return Level.new(
+		'2-------2' + NL +
+		'1---1---1' + NL +
+		'1-21312-1' + NL +
+		'1-1-1-1-1' + NL +
+		'113131311' + NL +
+		'1-1-1-1-1' + NL +
+		'1-21312-1' + NL +
+		'1---1---1' + NL +
+		'2-------2',
+		{
+			'1' : [Tile.TILE_TYPE.REGULAR],
+			'2' : [Tile.TILE_TYPE.REPEAT],
+			'3' : [
+				Tile.TILE_TYPE.REPEAT,
+				Tile.TILE_TYPE.SAFEZONE
+			],
+		},
+		[
+			[
+				'a0,a1,a2,a3,a4,b4,c4,c5,c6,d6,e6,e7,E6,D6,C6,C5,C4,B4,A4,A3,A2,A1,A0',
+								  'c4,d4,e4,e5,e6',
+										'e4,f4,g4,g5,g6,f6,e6',
+								  'E6,E5,E4,D4,C4',
+										'E6,F6,G6,G5,G4,F4,E4',
+			],
+			[
+				'i8,i7,i6,i5,i4,h4,g4,g3,g2,f2,e2,e1,E2,F2,G2,G3,G4,H4,I4,I5,I6,I7,I8',
+								  'g4,f4,e4,e3,e2',
+										'e4,d4,c4,c3,c2,d2,e2',
+								  'E2,E3,E4,F4,G4',
+										'E2,D2,C2,C3,C4,D4,E4',
+			],
+			[
+				'i0,i1,i2,i3,i4,h4,g4,g5,g6,f6,e6,e7,E6,F6,G6,G5,G4,H4,I4,I3,I2,I1,I0',
+								  'g4,f4,e4,e5,e6',
+										'e4,d4,c4,c5,c6,d6,e6',
+								  'E6,E5,E4,F4,G4',
+										'E6,D6,C6,C5,C4,D4,E4',
+			],
+			[
+				'a8,a7,a6,a5,a4,b4,c4,c3,c2,d2,e2,e1,E2,D2,C2,C3,C4,B4,A4,A5,A6,A7,A8',
+								  'c4,d4,e4,e3,e2',
+										'e4,f4,g4,g3,g2,f2,e2',
+								  'E2,E3,E4,D4,C4',
+										'E2,F2,G2,G3,G4,F4,E4',
 			],
 		]
 	)
