@@ -46,7 +46,7 @@ script = ExtResource("1_chnn0")
 
 [node name="map_center_pill" type="MeshInstance3D" parent="." unique_id=344026377]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
 mesh = SubResource("CapsuleMesh_g1s22")
 
 [node name="debug_container" type="Node3D" parent="." unique_id=411497694]
