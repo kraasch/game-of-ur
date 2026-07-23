@@ -9,14 +9,10 @@ class_name Level
 # statics   #
 #############
 
-enum LEVEL {LVL1,
-LVL2,
-LVL3, LVL4, LVL5, LVL6, LVL7, LVL8}
+enum LEVEL {LVL1, LVL2, LVL3, LVL4, LVL5, LVL6, LVL7, LVL8}
 
 static var level_creators : Array[Callable] = [
-	_create_level_01,
-	_create_level_02,
-	_create_level_03, _create_level_04,
+	_create_level_01, _create_level_02, _create_level_03, _create_level_04,
 	_create_level_05, _create_level_06, _create_level_07, _create_level_08,
 ]
 
