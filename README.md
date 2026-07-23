@@ -109,12 +109,12 @@ what's next
 
 ## license
 
-See license file [LICENSE.md](./LICENSE.md).
-
+released under creative commons attribution 4.0 international license (cc by
+4.0), see license file [LICENSE.md](./LICENSE.md).
 
 ## credits
 
-See the [License](#license) section.
+see the [License](#license) section.
 
 tools:
 
