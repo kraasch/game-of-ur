@@ -107,9 +107,14 @@ what's next
   - [X] implement feature: overlapping paths are treated like intersections (on second traditional board).
   - [X] make some more levels.
 
-## credits
+## license
 
 See license file [LICENSE.md](./LICENSE.md).
+
+
+## credits
+
+See the [License](#license) section.
 
 tools:
 
